@@ -983,9 +983,44 @@ Finally, enabling learnable filters at all three stages achieves the best accura
 
 
 
+% \begin{table}[pos=h]
+% \centering
+% \caption{LWSA and others.}
+% \label{tab:ablation_lwsa_attention}
+%   \begin{tabular}{lcc}
+% \toprule
+% Strategy & FLOPs & Top-1 \\
+% \midrule
+% Identity & 313 & 75.2 \\
+% $7\times7$ DW & 318 & 79.1 \\
+% LS Conv  & 321 & 80.4 \\
+% \rowcolor[gray]{0.92}
+% \textbf{LWSA} & 313 & \textbf{80.6} \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+
+% \begin{table}[pos=h]
+% \centering
+%   \caption{HH sub-hand method} 
+%   \label{tab:HH_method}
+%   \centering
+%   \begin{tabular}{lcc}
+% \toprule
+% Strategy & FLOPs & Top-1\\
+% \midrule
+% ALL DW & 318 & 79.1 \\
+% HH Identity & 316 & 79.0 \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+% \textbf{Analysis of Wavelet Spatial Attention.} To verify the rationality of the Wavelet Spatial Attention (WSA) design proposed in LWSA, we compare LWSA with other feature extraction methods. We design three approaches: the first one directly applies an identity transformation to the LL, LH, and HL sub-bands; the second one performs 7x7 depthwise convolution on each of the three sub-bands; and the third one is our proposed WSA. As shown in Tab. \ref{tab:ablation_lwsa_attention}, LWSA achieved a top-1 accuracy of up to 80.6\% while having fewer FLOPs than \chadded{\color{red}both} the 7x7 depthwise convolution \chadded{ \color{red} and the LS Conv} method. To verify whether the HH sub-band is beneficial to model performance, we conducted experiments by convolving all sub-bands and only convolving the LL, HL, and LH sub-bands. As shown in Tab.\ref{tab:HH_method}, the result indicates that neglecting to perform convolution on the HH sub-band leads to lower FLOPs without significant changes in top-1 accuracy, validating the effectiveness of the feature separation method proposed in LWSA.
+
 \begin{table}[pos=h]
 \centering
-\caption{LWSA and others.}
+\caption{Comparison of LWSA with different spatial feature extraction strategies on WCANet-T4.}
 \label{tab:ablation_lwsa_attention}
   \begin{tabular}{lcc}
 \toprule
@@ -1001,24 +1036,44 @@ LS Conv  & 321 & 80.4 \\
 \end{table}
 
 
+
+\textbf{Analysis of Wavelet Spatial Attention.} 
+To verify the rationality of the Wavelet Spatial Attention (WSA) design proposed in LWSA, we compare LWSA with different spatial feature extraction strategies. Specifically, we consider an identity transformation, $7\times7$ depthwise convolution, and the LS (Large-Small) convolution from LSNet~\cite{wang2025lsnet} as alternative designs. As shown in Table~\ref{tab:ablation_lwsa_attention}, LWSA achieves the highest Top-1 accuracy of 80.6\% with only 313M FLOPs, outperforming both the $7\times7$ depthwise convolution and LS Conv while requiring lower computational cost. These results demonstrate that the proposed WSA provides an effective accuracy--efficiency trade-off for spatial feature modeling.
+{ \color{red}
+This advantage can be attributed to its frequency-aware design, which selectively enhances informative sub-bands instead of applying the same spatial operation uniformly to the entire feature map.
+}
+
+
+
 \begin{table}[pos=h]
 \centering
-  \caption{HH sub-hand method} 
-  \label{tab:HH_method}
-  \centering
-  \begin{tabular}{lcc}
+\caption{\color{green} Ablation study of HH sub-band processing on ImageNet-100 and ClinicDB. Top-1 accuracy is reported for ImageNet-100, while Test Dice is reported for ClinicDB. Results are reported as mean $\pm$ standard deviation over five independent experiments.}
+\label{tab:HH_method}
+
+\small
+\setlength{\tabcolsep}{4pt}
+
+\begin{tabular}{llcc}
 \toprule
-Strategy & FLOPs & Top-1\\
+Dataset & Strategy & FLOPs (M) & Result (\%) \\
 \midrule
-ALL DW & 318 & 79.1 \\
-HH Identity & 316 & 79.0 \\
+ImageNet-100 & All DWConv & 318 & $79.1 \pm 0.23$ \\
+             & HH Identity & 316 & $79.0 \pm 0.36$ \\
+\midrule
+ClinicDB     & HH DWConv & 357 & $94.19 \pm 0.41$ \\
+             & HH Identity & 354 & ${94.21 \pm 0.67}$ \\
 \bottomrule
 \end{tabular}
-\end{table}
 
-\textbf{Analysis of Wavelet Spatial Attention.} To verify the rationality of the Wavelet Spatial Attention (WSA) design proposed in LWSA, we compare LWSA with other feature extraction methods. We design three approaches: the first one directly applies an identity transformation to the LL, LH, and HL sub-bands; the second one performs 7x7 depthwise convolution on each of the three sub-bands; and the third one is our proposed WSA. As shown in Tab. \ref{tab:ablation_lwsa_attention}, LWSA achieved a top-1 accuracy of up to 80.6\% while having fewer FLOPs than \chadded{\color{red}both} the 7x7 depthwise convolution \chadded{ \color{red} and the LS Conv} method. To verify whether the HH sub-band is beneficial to model performance, we conducted experiments by convolving all sub-bands and only convolving the LL, HL, and LH sub-bands. As shown in Tab.\ref{tab:HH_method}, the result indicates that neglecting to perform convolution on the HH sub-band leads to lower FLOPs without significant changes in top-1 accuracy, validating the effectiveness of the feature separation method proposed in LWSA.
+\end{table} 
 
+{\color{green}
+%   \textbf{Analysis of HH Sub-band Processing.}
+% In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To investigate whether additional feature extraction on the HH sub-band is necessary, we conduct ablation experiments on both ImageNet-100 and ClinicDB. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, applying DWConv to all sub-bands increases the FLOPs from 316M to 318M, while the Top-1 accuracy changes only slightly from $79.0 \pm 0.36$\% to $79.1 \pm 0.23$\%. Considering the need for careful validation of machine learning methods in healthcare applications~\cite{ganesan2024navigating}, we further examine this design on ClinicDB, where fine boundary delineation is particularly important. HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas additionally applying DWConv to the HH sub-band achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results indicate that additional processing of the HH sub-band provides no measurable performance improvement under either setting, while introducing additional computational cost. Therefore, preserving the HH sub-band for reconstruction without additional feature extraction provides a more favorable accuracy--efficiency trade-off.
+\textbf{Analysis of HH Sub-band Processing.}
+In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To isolate the effect of HH processing, we construct a controlled comparison in which LL, LH, and HL are processed by DWConv in both configurations, while only the treatment of the HH sub-band is changed. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, removing the additional DWConv from HH reduces the FLOPs from 318M to 316M, while the Top-1 accuracy changes only slightly from $79.1 \pm 0.23$\% to $79.0 \pm 0.36$\%. Considering the need for careful validation of machine learning methods in healthcare applications~\cite{ganesan2024navigating}, we further examine this design on ClinicDB, where fine boundary delineation is particularly important. HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas additionally applying DWConv to the HH sub-band achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results indicate that additional processing of the HH sub-band provides no measurable performance improvement under either setting, while introducing additional computational cost. Therefore, preserving the HH sub-band for reconstruction without additional feature extraction provides a more favorable accuracy--efficiency trade-off.
 
+}
 
 
 

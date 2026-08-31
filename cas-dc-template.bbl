@@ -504,6 +504,13 @@ Benjamin Graham, Alaaeldin El-Nouby, Hugo Touvron, Pierre Stock, Armand Joulin,
 \newblock In {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pages 12259--12269, 2021.
 
+\bibitem{ganesan2024navigating}
+Swathi Ganesan, Nalinda Somasiri, et~al.
+\newblock Navigating the integration of machine learning in healthcare:
+  challenges, strategies, and ethical considerations.
+\newblock {\em Journal of Computational and Cognitive Engineering}, 4(1):8--23,
+  2024.
+
 \bibitem{usman2025hmpformer}
 Muhammad~Talha Usman, Habib Khan, Haseeb Khan, Imad Rida, Xianxun Zhu, and
   JaKeoung Koo.
