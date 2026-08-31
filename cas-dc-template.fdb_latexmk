@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1788173782.00734 "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" "cas-dc-template.pdf" "cas-dc-template" 1788173784.96152 0
+["pdflatex"] 1788174797.92027 "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" "cas-dc-template.pdf" "cas-dc-template" 1788174800.82328 0
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1787925052 100073 f9376a13839ee15fe40f40aa1159bdd3 ""
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecsi0900.pk" 1787827321 22084 3b34329210021c84c70aaa30bd4b9f15 ""
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecss0900.pk" 1785315587 17932 47de93b85a8f3507198d1639ddb826c4 ""
@@ -239,11 +239,11 @@
   "LL_LH_HL_HH.pdf" 1787798430 505040 1f3c45dc4cebd978664a96c8907df2b0 ""
   "WCANet.pdf" 1787798430 259749 8bb207e39d9339eda05049b783f178b7 ""
   "Wavelet_Transform.pdf" 1787798430 120599 e1703b7cde8ccb077110e6e904253b58 ""
-  "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" 1788173781 104642 3c8a8a28dd32a501d9395c5e531ae444 ""
-  "cas-dc-template.abs" 1788173782 1391 c96a5c7bf352a5f8f6cb22e2314f19c7 "pdflatex"
-  "cas-dc-template.aux" 1788173784 37762 d2a334eb711eb6b85e3eeb107f5fcb46 "pdflatex"
-  "cas-dc-template.out" 1788173782 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cas-dc-template.tex" 1788173781 104642 3c8a8a28dd32a501d9395c5e531ae444 ""
+  "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" 1788174797 104648 4bf2f8e4829d40854d384b6dfdc3269c ""
+  "cas-dc-template.abs" 1788174798 1391 c96a5c7bf352a5f8f6cb22e2314f19c7 "pdflatex"
+  "cas-dc-template.aux" 1788174800 37308 88737ec8f52f23fc96f95539c752cf9c "pdflatex"
+  "cas-dc-template.out" 1788174798 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cas-dc-template.tex" 1788174797 104648 4bf2f8e4829d40854d384b6dfdc3269c ""
   "cas-dc.cls" 1787798430 4131 cd339ce7718d9133dc8cc5e56b7202a8 ""
   "code.png" 1787798430 341221 aa8c1cfbacd70b0271a4f99bc60f413f ""
   "combined_gpu_cpu_m1_performance.pdf" 1787798432 28124 13333d7bb979e46b218766e3cf4ddf26 ""
