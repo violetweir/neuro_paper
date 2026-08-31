@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex cas-dc-template"] 1788179495.20249 "cas-dc-template.aux" "cas-dc-template.bbl" "cas-dc-template" 1788179498.79576 0
+["bibtex cas-dc-template"] 1788179835.92894 "cas-dc-template.aux" "cas-dc-template.bbl" "cas-dc-template" 1788179839.1583 0
   "./cas-refs.bib" 1788179494 33241 7b2ec670eff3fadd79b62911df3e26f0 ""
   "C:/Users/viole/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/unsrt.bst" 1291864736 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "cas-dc-template.aux" 1788179498 35093 b8e91f9a8f1e5a267cd8fe70ccc36167 "pdflatex"
+  "cas-dc-template.aux" 1788179838 35093 b8e91f9a8f1e5a267cd8fe70ccc36167 "pdflatex"
   (generated)
   "cas-dc-template.bbl"
   "cas-dc-template.blg"
   (rewritten before read)
-["pdflatex"] 1788179495.49386 "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" "cas-dc-template.pdf" "cas-dc-template" 1788179498.79655 0
+["pdflatex"] 1788179836.1736 "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" "cas-dc-template.pdf" "cas-dc-template" 1788179839.15885 0
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1787925052 100073 f9376a13839ee15fe40f40aa1159bdd3 ""
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecsi0900.pk" 1787827321 22084 3b34329210021c84c70aaa30bd4b9f15 ""
   "C:/Users/viole/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecss0900.pk" 1785315587 17932 47de93b85a8f3507198d1639ddb826c4 ""
@@ -247,12 +247,12 @@
   "LL_LH_HL_HH.pdf" 1787798430 505040 1f3c45dc4cebd978664a96c8907df2b0 ""
   "WCANet.pdf" 1787798430 259749 8bb207e39d9339eda05049b783f178b7 ""
   "Wavelet_Transform.pdf" 1787798430 120599 e1703b7cde8ccb077110e6e904253b58 ""
-  "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" 1788179359 108406 c0df5747d1ae58b1aad6570042958e07 ""
-  "cas-dc-template.abs" 1788179496 1391 c96a5c7bf352a5f8f6cb22e2314f19c7 "pdflatex"
-  "cas-dc-template.aux" 1788179498 35093 b8e91f9a8f1e5a267cd8fe70ccc36167 "pdflatex"
-  "cas-dc-template.bbl" 1788179495 21939 5460581f3a496253e7ffff0c1ba1468d "bibtex cas-dc-template"
-  "cas-dc-template.out" 1788179496 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cas-dc-template.tex" 1788179359 108406 c0df5747d1ae58b1aad6570042958e07 ""
+  "c:/Users/viole/Desktop/新建文件夹/cas-dc-template.tex" 1788179832 108406 c0df5747d1ae58b1aad6570042958e07 ""
+  "cas-dc-template.abs" 1788179836 1391 c96a5c7bf352a5f8f6cb22e2314f19c7 "pdflatex"
+  "cas-dc-template.aux" 1788179838 35093 b8e91f9a8f1e5a267cd8fe70ccc36167 "pdflatex"
+  "cas-dc-template.bbl" 1788179836 21939 5460581f3a496253e7ffff0c1ba1468d "bibtex cas-dc-template"
+  "cas-dc-template.out" 1788179836 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cas-dc-template.tex" 1788179832 108406 c0df5747d1ae58b1aad6570042958e07 ""
   "cas-dc.cls" 1787798430 4131 cd339ce7718d9133dc8cc5e56b7202a8 ""
   "code.png" 1787798430 341221 aa8c1cfbacd70b0271a4f99bc60f413f ""
   "combined_gpu_cpu_m1_performance.pdf" 1787798432 28124 13333d7bb979e46b218766e3cf4ddf26 ""
