@@ -898,7 +898,7 @@ In this subsection, we conduct ablation experiments by using WCANet on ImageNet-
 
 \begin{table}[pos=h]
 \centering
-\caption{\chadded{Combinatorial ablation study of learnable filters across different stages on WCANet-T1.}}
+\caption{{\color{green}Combinatorial ablation study of learnable filters across different stages on WCANet-T1.}}
 \label{tab:stage_ablation}
 % 稍微缩小一点字号，避免缩放后字体看起来太扁
 \small 
@@ -923,9 +923,17 @@ All Stages             & 79.55 & 72.9 & +1.3 \\
 \end{table}
 
 
-\chadded{\textbf{Analysis of Learnable Wavelet Filters.} 
-To clearly reveal the individual contribution of learnable filters at different network depths, we conduct ablation studies on WCANet-T1 by enabling learnable wavelet filters in different stages independently. As shown in Table~\ref{tab:stage_ablation}, introducing learnable filters at any single stage (Stage 0, 1, or 2) yields a performance improvement over the baseline (71.6\%), demonstrating the general effectiveness of this design. Notably, the independent contributions of Stage 1 and Stage 2 (both +1.0\%) are significantly greater than that of Stage 0 (+0.3\%). We attribute this to the fact that mid-to-late stages contain more abstract and complex semantic information. In these deeper stages, data-driven learnable filters can more accurately capture high-dimensional frequency distribution differences than fixed Haar filters. In contrast, the early Stage 0 primarily captures basic edges and textures, for which fixed filters already provide a relatively strong foundation. Finally, enabling learnable filters across all stages synergistically achieves the optimal performance of 72.9\% (+1.3\%), confirming the necessity of multi-stage adaptive decomposition.
+{\textbf{Analysis of Learnable Wavelet Filters.}
+\color{green}
+To comprehensively characterize both the individual contributions and cross-stage interactions of learnable wavelet filters, we conduct an exhaustive combinatorial ablation on WCANet-T1 covering all possible configurations across Stage~0, Stage~1, and Stage~2.
+As shown in Table~\ref{tab:stage_ablation}, enabling learnable filters at any single stage improves performance over the fixed-filter baseline of 71.6\%, while the pairwise configurations further allow us to assess whether these stage-wise gains accumulate independently.
+Stage~1 and Stage~2 each provide a 1.0 percentage-point improvement, substantially larger than the 0.3 percentage-point gain obtained at Stage~0, indicating that learnable filters are more beneficial in the middle and deeper stages.
+This may be attributed to the more abstract and semantically complex representations at later network depths, where adaptive frequency decomposition can provide greater flexibility than fixed Haar filters.
+However, the pairwise results show that the stage-wise gains are not strictly additive: Stage~0 \& Stage~1 reaches 72.6\%, while Stage~0 \& Stage~2 reaches 72.5\%, neither exceeding the corresponding Stage~1 or Stage~2 single-stage configuration.
+By contrast, jointly enabling Stage~1 and Stage~2 achieves 72.7\%, slightly outperforming either stage alone and suggesting complementary effects between the middle and deeper stages despite partial overlap across stages.
+Finally, enabling learnable filters at all three stages achieves the best accuracy of 72.9\% (+1.3 percentage points), indicating that multi-stage adaptive decomposition provides the strongest overall configuration, while the observed improvements arise from complementary but partially overlapping cross-stage effects rather than a simple additive accumulation of independent stage-wise gains.
 }
+
 
 
 
