@@ -800,7 +800,7 @@ Moreover, WCANet-T8 shows competitive performance against the efficient CNN arch
 
 
 
-```latex
+
 \begin{table*}[pos=h]
 
 \centering
@@ -846,7 +846,6 @@ WCANet (Learnable Filters, Ours)
 \label{tab:clinicdb_domain_adaptation}
 
 \end{table*}
-```
 
 
 \begin{figure*} [pos=h]
@@ -960,24 +959,24 @@ Finally, enabling learnable filters at all three stages achieves the best accura
 % \end{table}
 
 
-\begin{table}[pos=h]
-\centering
-\caption{Top-1 accuracy under different configurations of learnable wavelet filters in LWSA across stages. Fix indicates fixed wavelet filters; learnable indicates learnable wavelet filters.}
-\label{tab:learnable_wt_ablation}
-\begin{tabular}{cccc}
-\toprule
-Stage 0 & Stage 1 & Stage 2 & Top-1 (\%) \\
-\midrule
-Fixed       & Fixed      & Fixed      & 78.4 \\
-Learnable    & Fixed      & Fixed      & 78.9 \\
-Learnable    & Learnable   & Fixed      &  79.7 \\
-Learnable    & Learnable   & Learnable   & \textbf{80.6} \\
-\bottomrule
-\end{tabular}
-\end{table}
+% \begin{table}[pos=h]
+% \centering
+% \caption{Top-1 accuracy under different configurations of learnable wavelet filters in LWSA across stages. Fix indicates fixed wavelet filters; learnable indicates learnable wavelet filters.}
+% \label{tab:learnable_wt_ablation}
+% \begin{tabular}{cccc}
+% \toprule
+% Stage 0 & Stage 1 & Stage 2 & Top-1 (\%) \\
+% \midrule
+% Fixed       & Fixed      & Fixed      & 78.4 \\
+% Learnable    & Fixed      & Fixed      & 78.9 \\
+% Learnable    & Learnable   & Fixed      &  79.7 \\
+% Learnable    & Learnable   & Learnable   & \textbf{80.6} \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
 
 
-\textbf{Analysis of Learnable Wavelet Filters.} To investigate the effectiveness of learnable wavelet filters in LWSA, we conduct ablation studies by progressively enabling filter learning across stages. As shown in Table~\ref{tab:learnable_wt_ablation}, when all stages use fixed wavelet filters, the model achieves a baseline Top-1 accuracy of 78.4\%. Introducing learnable filters in Stage 0 alone improves performance to 78.9\%, demonstrating that data-adaptive decomposition enhances spatial feature modeling even at early layers. Finally, when all stages employ learnable wavelet filters, the model achieves the highest accuracy of 80.6\%, confirming that end-to-end trainable filters consistently improve feature modeling ability. This trend clearly indicates that learning wavelet bases from data, rather than relying on handcrafted ones, leads to more effective feature separation and reconstruction.
+% \textbf{Analysis of Learnable Wavelet Filters.} To investigate the effectiveness of learnable wavelet filters in LWSA, we conduct ablation studies by progressively enabling filter learning across stages. As shown in Table~\ref{tab:learnable_wt_ablation}, when all stages use fixed wavelet filters, the model achieves a baseline Top-1 accuracy of 78.4\%. Introducing learnable filters in Stage 0 alone improves performance to 78.9\%, demonstrating that data-adaptive decomposition enhances spatial feature modeling even at early layers. Finally, when all stages employ learnable wavelet filters, the model achieves the highest accuracy of 80.6\%, confirming that end-to-end trainable filters consistently improve feature modeling ability. This trend clearly indicates that learning wavelet bases from data, rather than relying on handcrafted ones, leads to more effective feature separation and reconstruction.
 
 
 
