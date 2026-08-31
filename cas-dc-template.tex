@@ -851,7 +851,7 @@ WCANet (Learnable Filters, Ours)
 \begin{figure*} [pos=h]
     \centering
     \includegraphics[width=0.9\linewidth]{paper_figure_combined.png}
-    \caption{{\color{green}Qualitative feature-response and segmentation comparison on the ClinicDB dataset. The first row visualizes the intermediate spatial responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters, with the input image and ground truth provided as references. The following four rows present qualitative segmentation results. In the representative cases, the learnable-filter variant produces more target-focused feature responses and cleaner segmentation masks. The last row intentionally presents a challenging example in which the learnable filters provide no obvious advantage over the fixed filters and introduce several small isolated false-positive responses.}}
+    \caption{{\color{green}Qualitative feature-response and segmentation comparison on the ClinicDB dataset. The first row visualizes the intermediate spatial responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters, with the input image and ground truth provided as references. The following four rows present qualitative segmentation results. In the representative cases, the learnable-filter variant produces more target-focused feature responses and cleaner segmentation masks. The last row additionally presents a challenging example in which the improvement over the fixed-filter variant is less pronounced.}}
     \label{fig:feature_vis}
 \end{figure*}
 
@@ -876,7 +876,7 @@ WCANet (Learnable Filters, Ours)
 
 {\color{green}
 To intuitively analyze the effectiveness of our proposed WCANet in spatial feature extraction, we visualize the intermediate feature responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters in the first row of Fig.~\ref{fig:feature_vis}, together with representative segmentation results in the subsequent rows. Compared with MK-UNet, the wavelet-based variants suppress more irrelevant background responses, while the learnable-filter variant further produces a more compact and target-focused activation pattern. This observation suggests that adaptive frequency decomposition can better preserve task-relevant information and suppress less informative responses, which is consistent with the general feature-engineering principle of improving the discriminative quality of learned representations~\cite{ravishankar2025survey}.
-The segmentation examples further show that WCANet with learnable filters generally produces cleaner target regions and more accurate localization than the baseline and fixed-filter variants, supporting the effectiveness of the proposed Learnable Wavelet Spatial Attention for spatial feature modeling. For a more objective qualitative comparison, the last row additionally presents a challenging example where the improvement over fixed filters is less pronounced.
+The segmentation examples further show that WCANet with learnable filters generally produces cleaner target regions and more accurate localization than the baseline and fixed-filter variants, supporting the effectiveness of the proposed Learnable Wavelet Spatial Attention for spatial feature modeling. 
 }
 
 % {\color{red}
