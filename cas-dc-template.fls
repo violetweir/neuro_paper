@@ -585,6 +585,9 @@ INPUT .\code.png
 INPUT .\code.png
 INPUT .\code.png
 INPUT C:\Users\viole\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\zapfding\pzdr.tfm
+INPUT .\cas-dc-template.bbl
+INPUT .\cas-dc-template.bbl
+INPUT cas-dc-template.bbl
 OUTPUT cas-dc-template.soc
 OUTPUT cas-dc-template.loc
 INPUT cas-dc-template.aux

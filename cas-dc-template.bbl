@@ -1,0 +1,507 @@
+\begin{thebibliography}{10}
+
+\bibitem{han2022survey}
+Kai Han, Yunhe Wang, Hanting Chen, Xinghao Chen, Jianyuan Guo, Zhenhua Liu,
+  Yehui Tang, An~Xiao, Chunjing Xu, Yixing Xu, et~al.
+\newblock A survey on vision transformer.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  45(1):87--110, 2022.
+
+\bibitem{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 770--778, 2016.
+
+\bibitem{dosovitskiy2020image}
+Alexey Dosovitskiy.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock {\em arXiv preprint arXiv:2010.11929}, 2020.
+
+\bibitem{liu2022convnet}
+Zhuang Liu, Hanzi Mao, Chao-Yuan Wu, Christoph Feichtenhofer, Trevor Darrell,
+  and Saining Xie.
+\newblock A convnet for the 2020s.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 11976--11986, 2022.
+
+\bibitem{liu2021swin}
+Ze~Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and
+  Baining Guo.
+\newblock Swin transformer: Hierarchical vision transformer using shifted
+  windows.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 10012--10022, 2021.
+
+\bibitem{zhang2024vision}
+Qiming Zhang, Jing Zhang, Yufei Xu, and Dacheng Tao.
+\newblock Vision transformer with quadrangle attention.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  46(5):3608--3624, 2024.
+
+\bibitem{li2022efficientformer}
+Yanyu Li, Geng Yuan, Yang Wen, Ju~Hu, Georgios Evangelidis, Sergey Tulyakov,
+  Yanzhi Wang, and Jian Ren.
+\newblock Efficientformer: Vision transformers at mobilenet speed.
+\newblock {\em Advances in Neural Information Processing Systems},
+  35:12934--12949, 2022.
+
+\bibitem{maaz2022edgenext}
+Muhammad Maaz, Abdelrahman Shaker, Hisham Cholakkal, Salman Khan, Syed~Waqas
+  Zamir, Rao~Muhammad Anwer, and Fahad Shahbaz~Khan.
+\newblock Edgenext: efficiently amalgamated cnn-transformer architecture for
+  mobile vision applications.
+\newblock In {\em European conference on computer vision}, pages 3--20.
+  Springer, 2022.
+
+\bibitem{liu2023efficientvit}
+Xinyu Liu, Houwen Peng, Ningxin Zheng, Yuqing Yang, Han Hu, and Yixuan Yuan.
+\newblock Efficientvit: Memory efficient vision transformer with cascaded group
+  attention.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 14420--14430, 2023.
+
+\bibitem{mehta2021mobilevit}
+Sachin Mehta and Mohammad Rastegari.
+\newblock Mobilevit: light-weight, general-purpose, and mobile-friendly vision
+  transformer.
+\newblock {\em arXiv preprint arXiv:2110.02178}, 2021.
+
+\bibitem{wadekar2022mobilevitv3}
+Shakti~N Wadekar and Abhishek Chaurasia.
+\newblock Mobilevitv3: Mobile-friendly vision transformer with simple and
+  effective fusion of local, global and input features.
+\newblock {\em arXiv preprint arXiv:2209.15159}, 2022.
+
+\bibitem{yun2024shvit}
+Seokju Yun and Youngmin Ro.
+\newblock Shvit: Single-head vision transformer with memory efficient macro
+  design.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 5756--5767, 2024.
+
+\bibitem{khan2025optimal}
+Habib Khan, Samee~Ullah Khan, Waseem Ullah, and Sung~Wook Baik.
+\newblock Optimal features driven hybrid attention network for effective video
+  summarization.
+\newblock {\em Engineering Applications of Artificial Intelligence},
+  158:111211, 2025.
+
+\bibitem{fu2022hungry}
+Daniel~Y Fu, Tri Dao, Khaled~K Saab, Armin~W Thomas, Atri Rudra, and
+  Christopher R{\'e}.
+\newblock Hungry hungry hippos: Towards language modeling with state space
+  models.
+\newblock {\em arXiv preprint arXiv:2212.14052}, 2022.
+
+\bibitem{gu2024mamba}
+Albert Gu and Tri Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock In {\em First conference on language modeling}, 2024.
+
+\bibitem{gu2021efficiently}
+Albert Gu, Karan Goel, and Christopher R{\'e}.
+\newblock Efficiently modeling long sequences with structured state spaces.
+\newblock {\em arXiv preprint arXiv:2111.00396}, 2021.
+
+\bibitem{smith2022simplified}
+Jimmy~TH Smith, Andrew Warrington, and Scott~W Linderman.
+\newblock Simplified state space layers for sequence modeling.
+\newblock {\em arXiv preprint arXiv:2208.04933}, 2022.
+
+\bibitem{liu2024vmamba}
+Yue Liu, Yunjie Tian, Yuzhong Zhao, Hongtian Yu, Lingxi Xie, Yaowei Wang,
+  Qixiang Ye, Jianbin Jiao, and Yunfan Liu.
+\newblock Vmamba: Visual state space model.
+\newblock {\em Advances in neural information processing systems},
+  37:103031--103063, 2024.
+
+\bibitem{pei2025efficientvmamba}
+Xiaohuan Pei, Tao Huang, and Chang Xu.
+\newblock Efficientvmamba: Atrous selective scan for light weight visual mamba.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~39, pages 6443--6451, 2025.
+
+\bibitem{he2025mobilemamba}
+Haoyang He, Jiangning Zhang, Yuxuan Cai, Hongxu Chen, Xiaobin Hu, Zhenye Gan,
+  Yabiao Wang, Chengjie Wang, Yunsheng Wu, and Lei Xie.
+\newblock Mobilemamba: Lightweight multi-receptive visual mamba network.
+\newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
+  Conference}, pages 4497--4507, 2025.
+
+\bibitem{sandler2018mobilenetv2}
+Mark Sandler, Andrew Howard, Menglong Zhu, Andrey Zhmoginov, and Liang-Chieh
+  Chen.
+\newblock Mobilenetv2: Inverted residuals and linear bottlenecks.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 4510--4520, 2018.
+
+\bibitem{tan2021efficientnetv2}
+Mingxing Tan and Quoc Le.
+\newblock Efficientnetv2: Smaller models and faster training.
+\newblock In {\em International conference on machine learning}, pages
+  10096--10106. PMLR, 2021.
+
+\bibitem{howard2017mobilenets}
+Andrew~G Howard, Menglong Zhu, Bo~Chen, Dmitry Kalenichenko, Weijun Wang,
+  Tobias Weyand, Marco Andreetto, and Hartwig Adam.
+\newblock Mobilenets: Efficient convolutional neural networks for mobile vision
+  applications.
+\newblock {\em arXiv preprint arXiv:1704.04861}, 2017.
+
+\bibitem{tan2019rethinking}
+Mingxing Tan, Q~Efficientnet Le, et~al.
+\newblock Rethinking model scaling for convolutional neural networks.
+\newblock In {\em Proceedings of the International conference on machine
+  learning, Long Beach, CA, USA}, volume~15, 2019.
+
+\bibitem{ma2018shufflenet}
+Ningning Ma, Xiangyu Zhang, Hai-Tao Zheng, and Jian Sun.
+\newblock Shufflenet v2: Practical guidelines for efficient cnn architecture
+  design.
+\newblock In {\em Proceedings of the European conference on computer vision
+  (ECCV)}, pages 116--131, 2018.
+
+\bibitem{zhang2018shufflenet}
+Xiangyu Zhang, Xinyu Zhou, Mengxiao Lin, and Jian Sun.
+\newblock Shufflenet: An extremely efficient convolutional neural network for
+  mobile devices.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 6848--6856, 2018.
+
+\bibitem{han2020ghostnet}
+Kai Han, Yunhe Wang, Qi~Tian, Jianyuan Guo, Chunjing Xu, and Chang Xu.
+\newblock Ghostnet: More features from cheap operations.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 1580--1589, 2020.
+
+\bibitem{tang2022ghostnetv2}
+Yehui Tang, Kai Han, Jianyuan Guo, Chang Xu, Chao Xu, and Yunhe Wang.
+\newblock Ghostnetv2: Enhance cheap operation with long-range attention.
+\newblock {\em Advances in Neural Information Processing Systems},
+  35:9969--9982, 2022.
+
+\bibitem{chen2023run}
+Jierun Chen, Shiu-hong Kao, Hao He, Weipeng Zhuo, Song Wen, Chul-Ho Lee, and
+  S-H~Gary Chan.
+\newblock Run, don't walk: chasing higher flops for faster neural networks.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 12021--12031, 2023.
+
+\bibitem{daubechies1992ten}
+Ingrid Daubechies.
+\newblock {\em Ten lectures on wavelets}.
+\newblock SIAM, 1992.
+
+\bibitem{lee2020centermask}
+Youngwan Lee and Jongyoul Park.
+\newblock Centermask: Real-time anchor-free instance segmentation.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 13906--13915, 2020.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{esser2021taming}
+Patrick Esser, Robin Rombach, and Bjorn Ommer.
+\newblock Taming transformers for high-resolution image synthesis.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 12873--12883, 2021.
+
+\bibitem{zhang2022topformer}
+Wenqiang Zhang, Zilong Huang, Guozhong Luo, Tao Chen, Xinggang Wang, Wenyu Liu,
+  Gang Yu, and Chunhua Shen.
+\newblock Topformer: Token pyramid transformer for mobile semantic
+  segmentation.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 12083--12093, 2022.
+
+\bibitem{mehta2022separable}
+Sachin Mehta and Mohammad Rastegari.
+\newblock Separable self-attention for mobile vision transformers.
+\newblock {\em arXiv preprint arXiv:2206.02680}, 2022.
+
+\bibitem{vasu2023fastvit}
+Pavan Kumar~Anasosalu Vasu, James Gabriel, Jeff Zhu, Oncel Tuzel, and Anurag
+  Ranjan.
+\newblock Fastvit: A fast hybrid vision transformer using structural
+  reparameterization.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 5785--5795, 2023.
+
+\bibitem{wang2025cait}
+Ao~Wang, Hui Chen, Zijia Lin, Sicheng Zhao, Jungong Han, and Guiguang Ding.
+\newblock Cait: Triple-win compression towards high accuracy, fast inference,
+  and favorable transferability for vits.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  2025.
+
+\bibitem{pan2022edgevits}
+Junting Pan, Adrian Bulat, Fuwen Tan, Xiatian Zhu, Lukasz Dudziak, Hongsheng
+  Li, Georgios Tzimiropoulos, and Brais Martinez.
+\newblock Edgevits: Competing light-weight cnns on mobile devices with vision
+  transformers.
+\newblock In {\em European conference on computer vision}, pages 294--311.
+  Springer, 2022.
+
+\bibitem{hatamizadeh2407mambavision}
+Ali Hatamizadeh and Jan Kautz.
+\newblock Mambavision: A hybrid mamba-transformer vision backbone. arxiv 2024.
+\newblock {\em arXiv preprint arXiv:2407.08083}.
+
+\bibitem{he2024mambaad}
+Haoyang He, Yuhu Bai, Jiangning Zhang, Qingdong He, Hongxu Chen, Zhenye Gan,
+  Chengjie Wang, Xiangtai Li, Guanzhong Tian, and Lei Xie.
+\newblock Mambaad: Exploring state space models for multi-class unsupervised
+  anomaly detection.
+\newblock {\em Advances in Neural Information Processing Systems},
+  37:71162--71187, 2024.
+
+\bibitem{zhu2024vision}
+Lianghui Zhu, Bencheng Liao, Qian Zhang, Xinlong Wang, Wenyu Liu, and Xinggang
+  Wang.
+\newblock Vision mamba: Efficient visual representation learning with
+  bidirectional state space model.
+\newblock {\em arXiv preprint arXiv:2401.09417}, 2024.
+
+\bibitem{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock {\em Advances in neural information processing systems}, 25, 2012.
+
+\bibitem{redmon2016you}
+Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi.
+\newblock You only look once: Unified, real-time object detection.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 779--788, 2016.
+
+\bibitem{long2015fully}
+Jonathan Long, Evan Shelhamer, and Trevor Darrell.
+\newblock Fully convolutional networks for semantic segmentation.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 3431--3440, 2015.
+
+\bibitem{bolya2019yolact}
+Daniel Bolya, Chong Zhou, Fanyi Xiao, and Yong~Jae Lee.
+\newblock Yolact: Real-time instance segmentation.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 9157--9166, 2019.
+
+\bibitem{dong2015image}
+Chao Dong, Chen~Change Loy, Kaiming He, and Xiaoou Tang.
+\newblock Image super-resolution using deep convolutional networks.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  38(2):295--307, 2015.
+
+\bibitem{wang2023hierarchical}
+Ao~Wang, Hui Chen, Zijia Lin, Zixuan Ding, Pengzhang Liu, Yongjun Bao, Weipeng
+  Yan, and Guiguang Ding.
+\newblock Hierarchical prompt learning using clip for multi-label
+  classification with single positive labels.
+\newblock In {\em Proceedings of the 31st ACM International Conference on
+  Multimedia}, pages 5594--5604, 2023.
+
+\bibitem{ding2023exploring}
+Zixuan Ding, Ao~Wang, Hui Chen, Qiang Zhang, Pengzhang Liu, Yongjun Bao,
+  Weipeng Yan, and Jungong Han.
+\newblock Exploring structured semantic prior for multi label recognition with
+  incomplete labels.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 3398--3407, 2023.
+
+\bibitem{chollet2017xception}
+Fran{\c{c}}ois Chollet.
+\newblock Xception: Deep learning with depthwise separable convolutions.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 1251--1258, 2017.
+
+\bibitem{duan2017sar}
+Yiping Duan, Fang Liu, Licheng Jiao, Peng Zhao, and Lu~Zhang.
+\newblock Sar image segmentation based on convolutional-wavelet neural network
+  and markov random field.
+\newblock {\em Pattern Recognition}, 64:255--267, 2017.
+
+\bibitem{williams2018wavelet}
+Travis Williams and Robert Li.
+\newblock Wavelet pooling for convolutional neural networks.
+\newblock In {\em International conference on learning representations}, 2018.
+
+\bibitem{finder2022wavelet}
+Shahaf~E Finder, Yair Zohav, Maor Ashkenazi, and Eran Treister.
+\newblock Wavelet feature maps compression for image-to-image cnns.
+\newblock {\em Advances in Neural Information Processing Systems},
+  35:20592--20606, 2022.
+
+\bibitem{ronneberger2015u}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In {\em International Conference on Medical image computing and
+  computer-assisted intervention}, pages 234--241. Springer, 2015.
+
+\bibitem{liu2018multi}
+Pengju Liu, Hongzhi Zhang, Kai Zhang, Liang Lin, and Wangmeng Zuo.
+\newblock Multi-level wavelet-cnn for image restoration.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition workshops}, pages 773--782, 2018.
+
+\bibitem{alaba2022wcnn3d}
+Simegnew~Yihunie Alaba and John~E Ball.
+\newblock Wcnn3d: Wavelet convolutional neural network-based 3d object
+  detection for autonomous driving.
+\newblock {\em Sensors}, 22(18):7010, 2022.
+
+\bibitem{finder2024wavelet}
+Shahaf~E Finder, Roy Amoyal, Eran Treister, and Oren Freifeld.
+\newblock Wavelet convolutions for large receptive fields.
+\newblock In {\em European Conference on Computer Vision}, pages 363--380.
+  Springer, 2024.
+
+\bibitem{ren2016faster}
+Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
+\newblock Faster r-cnn: Towards real-time object detection with region proposal
+  networks.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  39(6):1137--1149, 2016.
+
+\bibitem{redmon2018yolov3}
+Ali Farhadi, Joseph Redmon, et~al.
+\newblock Yolov3: An incremental improvement.
+\newblock In {\em Computer vision and pattern recognition}, volume 1804, pages
+  1--6. Springer Berlin/Heidelberg, Germany, 2018.
+
+\bibitem{xue2023smalltrack}
+Yuanliang Xue, Guodong Jin, Tao Shen, Lining Tan, Nian Wang, Jing Gao, and
+  Lianfeng Wang.
+\newblock Smalltrack: Wavelet pooling and graph enhanced classification for uav
+  small object tracking.
+\newblock {\em IEEE Transactions on Geoscience and Remote Sensing}, 61:1--15,
+  2023.
+
+\bibitem{gal2021swagan}
+Rinon Gal, Dana~Cohen Hochberg, Amit Bermano, and Daniel Cohen-Or.
+\newblock Swagan: A style-based wavelet-driven generative model.
+\newblock {\em ACM Transactions on Graphics (TOG)}, 40(4):1--11, 2021.
+
+\bibitem{huang2017wavelet}
+Huaibo Huang, Ran He, Zhenan Sun, and Tieniu Tan.
+\newblock Wavelet-srnet: A wavelet-based cnn for multi-scale face super
+  resolution.
+\newblock In {\em Proceedings of the IEEE international conference on computer
+  vision}, pages 1689--1697, 2017.
+
+\bibitem{jung2025vulnerability}
+NamGyu Jung, WooChan Choo, Inam Ullah, Habib Khan, and Chang Choi.
+\newblock Vulnerability assessment method for an enhanced user authentication
+  system based on electrocardiogram in the critical infrastructure environment.
+\newblock 2025.
+
+\bibitem{xiao2021early}
+Tete Xiao, Mannat Singh, Eric Mintun, Trevor Darrell, Piotr Doll{\'a}r, and
+  Ross Girshick.
+\newblock Early convolutions help transformers see better.
+\newblock {\em Advances in neural information processing systems},
+  34:30392--30400, 2021.
+
+\bibitem{howard2019searching}
+Andrew Howard, Mark Sandler, Grace Chu, Liang-Chieh Chen, Bo~Chen, Mingxing
+  Tan, Weijun Wang, Yukun Zhu, Ruoming Pang, Vijay Vasudevan, et~al.
+\newblock Searching for mobilenetv3.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 1314--1324, 2019.
+
+\bibitem{zhang2023rethinking}
+Jiangning Zhang, Xiangtai Li, Jian Li, Liang Liu, Zhucun Xue, Boshen Zhang,
+  Zhengkai Jiang, Tianxin Huang, Yabiao Wang, and Chengjie Wang.
+\newblock Rethinking mobile block for efficient attention-based models.
+\newblock In {\em 2023 IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, pages 1389--1400. IEEE Computer Society, 2023.
+
+\bibitem{ma2024rewrite}
+Xu~Ma, Xiyang Dai, Yue Bai, Yizhou Wang, and Yun Fu.
+\newblock Rewrite the stars.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 5694--5703, 2024.
+
+\bibitem{wang2025lsnet}
+Ao~Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding.
+\newblock Lsnet: See large, focus small.
+\newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
+  Conference}, pages 9718--9729, 2025.
+
+\bibitem{wang2024repvit}
+Ao~Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding.
+\newblock Repvit: Revisiting mobile cnn from vit perspective.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 15909--15920, 2024.
+
+\bibitem{deng2009imagenet}
+Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li~Fei-Fei.
+\newblock Imagenet: A large-scale hierarchical image database.
+\newblock In {\em 2009 IEEE conference on computer vision and pattern
+  recognition}, pages 248--255. Ieee, 2009.
+
+\bibitem{wang2021pyramid}
+Wenhai Wang, Enze Xie, Xiang Li, Deng-Ping Fan, Kaitao Song, Ding Liang, Tong
+  Lu, Ping Luo, and Ling Shao.
+\newblock Pyramid vision transformer: A versatile backbone for dense prediction
+  without convolutions.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 568--578, 2021.
+
+\bibitem{yu2022metaformer}
+Weihao Yu, Mi~Luo, Pan Zhou, Chenyang Si, Yichen Zhou, Xinchao Wang, Jiashi
+  Feng, and Shuicheng Yan.
+\newblock Metaformer is actually what you need for vision.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 10819--10829, 2022.
+
+\bibitem{lin2014microsoft}
+Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva
+  Ramanan, Piotr Doll{\'a}r, and C~Lawrence Zitnick.
+\newblock Microsoft coco: Common objects in context.
+\newblock In {\em European conference on computer vision}, pages 740--755.
+  Springer, 2014.
+
+\bibitem{lin2017focal}
+Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, and Piotr Doll{\'a}r.
+\newblock Focal loss for dense object detection.
+\newblock In {\em Proceedings of the IEEE international conference on computer
+  vision}, pages 2980--2988, 2017.
+
+\bibitem{he2017mask}
+Kaiming He, Georgia Gkioxari, Piotr Doll{\'a}r, and Ross Girshick.
+\newblock Mask r-cnn.
+\newblock In {\em Proceedings of the IEEE international conference on computer
+  vision}, pages 2961--2969, 2017.
+
+\bibitem{loshchilov2017decoupled}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock {\em arXiv preprint arXiv:1711.05101}, 2017.
+
+\bibitem{rahman2025mk}
+Md~Mostafijur Rahman and Radu Marculescu.
+\newblock Mk-unet: Multi-kernel lightweight cnn for medical image segmentation.
+\newblock In {\em 2025 IEEE/CVF International Conference on Computer Vision
+  Workshops (ICCVW)}, pages 1053--1062. IEEE, 2025.
+
+\bibitem{graham2021levit}
+Benjamin Graham, Alaaeldin El-Nouby, Hugo Touvron, Pierre Stock, Armand Joulin,
+  Herv{\'e} J{\'e}gou, and Matthijs Douze.
+\newblock Levit: a vision transformer in convnet's clothing for faster
+  inference.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 12259--12269, 2021.
+
+\bibitem{usman2025hmpformer}
+Muhammad~Talha Usman, Habib Khan, Haseeb Khan, Imad Rida, Xianxun Zhu, and
+  JaKeoung Koo.
+\newblock Hmpformer: Hierarchical vision transformer with multi-perspective
+  feature learning for precise polyp segmentation.
+\newblock {\em Image and Vision Computing}, page 105777, 2025.
+
+\end{thebibliography}
