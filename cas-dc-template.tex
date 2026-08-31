@@ -850,8 +850,8 @@ WCANet (Learnable Filters, Ours)
 
 \begin{figure*} [pos=h]
     \centering
-    \includegraphics[width=0.9\linewidth]{paper_comparison_figure.png}
-    \caption{\chadded{Feature map visualization comparison between the baseline and WCANet (Ours). Compared to the baseline, WCANet exhibits more precise and concentrated attention on the target objects while effectively suppressing background noise.}}
+    \includegraphics[width=0.9\linewidth]{paper_figure_combined.png}
+    \caption{{\color{green}Qualitative feature-response and segmentation comparison on the ClinicDB dataset. The first row visualizes the intermediate spatial responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters, with the input image and ground truth provided as references. The following four rows present qualitative segmentation results. In the representative cases, the learnable-filter variant produces more target-focused feature responses and cleaner segmentation masks. The last row intentionally presents a challenging example in which the learnable filters provide no obvious advantage over the fixed filters and introduce several small isolated false-positive responses.}}
     \label{fig:feature_vis}
 \end{figure*}
 
@@ -874,8 +874,10 @@ WCANet (Learnable Filters, Ours)
   These results further demonstrate the cross-domain adaptability of the proposed learnable wavelet filters. The learnable decomposition can adjust to the distinctive texture, contrast, and boundary characteristics of medical images. Meanwhile, the orthogonality constraint maintains a mathematically structured and non-redundant multi-band decomposition during optimization.
 }
 
-{\color{red}To intuitively demonstrate the superiority of our proposed WCANet in spatial feature extraction, we visualize the intermediate feature maps of both the baseline model and our WCANet. As shown in Fig.~\ref{fig:feature_vis}, the baseline model tends to capture redundant background information and exhibits scattered, unfocused responses. In contrast, by decoupling feature modeling and employing the Learnable Wavelet Spatial Attention (LWSA), WCANet successfully suppresses irrelevant noise and concentrates its responses much more precisely on the discriminative regions of the target objects. This qualitative comparison provides strong empirical evidence that our Cascade Channel-Spatial Attention (CCSA) mechanism effectively separates redundant features and achieves highly precise spatial modeling.}
-
+{\color{green}
+To intuitively analyze the effectiveness of our proposed WCANet in spatial feature extraction, we visualize the intermediate feature responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters in the first row of Fig.~\ref{fig:feature_vis}, together with representative segmentation results in the subsequent rows. Compared with MK-UNet, the wavelet-based variants suppress more irrelevant background responses, while the learnable-filter variant further produces a more compact and target-focused activation pattern. This observation suggests that adaptive frequency decomposition can better preserve task-relevant information and suppress less informative responses, which is consistent with the general feature-engineering principle of improving the discriminative quality of learned representations~\cite{ravishankar2025survey}.
+The segmentation examples further show that WCANet with learnable filters generally produces cleaner target regions and more accurate localization than the baseline and fixed-filter variants, supporting the effectiveness of the proposed Learnable Wavelet Spatial Attention for spatial feature modeling. For a more objective qualitative comparison, the last row additionally presents a challenging example where the improvement over fixed filters is less pronounced.
+}
 
 % {\color{red}
 
