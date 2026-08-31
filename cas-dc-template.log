@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.15)  31 AUG 2026 20:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.15)  31 AUG 2026 20:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1570,51 +1570,51 @@ er
 <paper_comparison_figure.png, id=514, 1047.915pt x 771.6027pt>
 File: paper_comparison_figure.png Graphic file (type png)
 <use paper_comparison_figure.png>
-Package pdftex.def Info: paper_comparison_figure.png  used on input line 821.
+Package pdftex.def Info: paper_comparison_figure.png  used on input line 825.
 (pdftex.def)             Requested size: 445.05496pt x 327.69722pt.
 
-Underfull \hbox (badness 1888) in paragraph at lines 833--835
+Underfull \hbox (badness 1888) in paragraph at lines 837--839
 []\T1/stix/m/n/10 To eval-u-ate how WCANet be-haves across do-mains
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 833--835
+Underfull \hbox (badness 1102) in paragraph at lines 837--839
 \T1/stix/m/n/10 dif-fer sub-stan-tially from nat-u-ral Im-a-geNet statis-tics, 
 we
  []
 
 
-Overfull \hbox (1.42552pt too wide) in paragraph at lines 838--840
+Overfull \hbox (1.42552pt too wide) in paragraph at lines 842--844
 \T1/stix/m/n/10 equipped with our pro-posed learn-able wavelet fil-ters achieve
 s
  []
 
 
-Underfull \hbox (badness 1509) in paragraph at lines 838--840
+Underfull \hbox (badness 1509) in paragraph at lines 842--844
 \T1/stix/m/n/10 the best av-er-age per-for-mance, reach-ing $\LS1/stix/m/n/10 9
 4\LS1/stix/m/it/10 :\LS1/stix/m/n/10 28 , 0\LS1/stix/m/it/10 :\LS1/stix/m/n/10 
 60$\T1/stix/m/n/10 %
  []
 
 
-Overfull \hbox (4.13554pt too wide) in paragraph at lines 842--844
+Overfull \hbox (4.13554pt too wide) in paragraph at lines 846--848
 []\T1/stix/m/n/10 These re-sults fur-ther demon-strate the cross-domain adapt-
  []
 
 [8]
-Underfull \hbox (badness 1496) in paragraph at lines 894--895
+Underfull \hbox (badness 1496) in paragraph at lines 898--899
 []\T1/stix/b/n/10 Analysis of Learn-able Wavelet Fil-ters. \T1/stix/m/n/10 To c
 learly
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 894--895
+Underfull \hbox (badness 1127) in paragraph at lines 898--899
 \T1/stix/m/n/10 re-veal the in-di-vid-ual con-tri-bu-tion of learn-able fil-ter
 s at
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 894--895
+Underfull \hbox (badness 1603) in paragraph at lines 898--899
 \T1/stix/m/n/10 a per-for-mance im-prove-ment over the base-line (71.6%),
  []
 
@@ -1625,37 +1625,34 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [10]
-<combined_gpu_cpu_m1_performance.pdf, id=566, 859.4308pt x 1508.39328pt>
+<combined_gpu_cpu_m1_performance.pdf, id=564, 859.4308pt x 1508.39328pt>
 File: combined_gpu_cpu_m1_performance.pdf Graphic file (type pdf)
 <use combined_gpu_cpu_m1_performance.pdf>
 Package pdftex.def Info: combined_gpu_cpu_m1_performance.pdf  used on input lin
-e 1090.
+e 1094.
 (pdftex.def)             Requested size: 238.25444pt x 418.1583pt.
-<code.png, id=569, 1046.91125pt x 531.9875pt>
+<code.png, id=567, 1046.91125pt x 531.9875pt>
 File: code.png Graphic file (type png)
 <use code.png>
-Package pdftex.def Info: code.png  used on input line 1145.
+Package pdftex.def Info: code.png  used on input line 1149.
 (pdftex.def)             Requested size: 445.05496pt x 226.15257pt.
 
-Overfull \hbox (9.46637pt too wide) in paragraph at lines 1161--1186
+Overfull \hbox (9.46637pt too wide) in paragraph at lines 1165--1190
  [][] 
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 1193--1194
+Underfull \hbox (badness 1308) in paragraph at lines 1197--1198
 []\T1/stix/m/n/10 As WCANet in-cor-po-rates wavelet trans-form mech-a-
  []
 
 [11 <./combined_gpu_cpu_m1_performance.pdf>]
-Underfull \hbox (badness 3209) in paragraph at lines 1198--1198
+Underfull \hbox (badness 3209) in paragraph at lines 1202--1202
 []\T1/cmss/m/n/9 Architectural de-tails of WCANet-T1, WCANet-T3, and
  []
 
-(cas-dc-template.bbl [12 <./code.png>]
+[12 <./code.png>] (cas-dc-template.bbl
 Underfull \hbox (badness 1205) in paragraph at lines 66--70
 \T1/stix/m/n/8 general-purpose, and mobile-friendly vi-sion trans-former.  \T1/
 stix/m/it/8 arXiv
@@ -1676,12 +1673,12 @@ Underfull \hbox (badness 1320) in paragraph at lines 385--388
 []\T1/stix/m/n/8 Rinon Gal, Dana Co-hen Hochberg, Amit Bermano, and Daniel
  []
 
-
+[14]
 Underfull \hbox (badness 1127) in paragraph at lines 410--415
 []\T1/stix/m/n/8 Andrew Howard, Mark San-dler, Grace Chu, Liang-Chieh Chen,
  []
 
-[14])
+)
 \Changes@OutFile=\write6
 \openout6 = `cas-dc-template.soc'.
 
@@ -1699,13 +1696,13 @@ Package rerunfilecheck Info: File `cas-dc-template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 32556 strings out of 467871
- 576057 string characters out of 5418376
- 1000885 words of memory out of 5000000
+ 32555 strings out of 467871
+ 576046 string characters out of 5418376
+ 1001095 words of memory out of 5000000
  60675 multiletter control sequences out of 15000+600000
  733332 words of font info for 169 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,19n,122p,1630b,836s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 114i,19n,122p,1630b,834s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\viole\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsi
 0900.pk> <C:\Users\viole\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tcss0900.pk> <C:\Users\viole\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -1725,9 +1722,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/viole/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/
 viole/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:
 /Users/viole/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on cas-dc-template.pdf (17 pages, 8464132 bytes).
+Output written on cas-dc-template.pdf (17 pages, 8464042 bytes).
 PDF statistics:
- 977 PDF objects out of 1000 (max. 8388607)
- 189 named destinations out of 1000 (max. 500000)
+ 975 PDF objects out of 1000 (max. 8388607)
+ 188 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

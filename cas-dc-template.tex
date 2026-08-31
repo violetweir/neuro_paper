@@ -800,20 +800,24 @@ Moreover, WCANet-T8 shows competitive performance against the efficient CNN arch
 
 
 
-\begin{table*}[pos=t]
+\begin{table*}[pos=h]
 \centering
-\caption{\chadded{Performance comparison on the ClinicDB medical imaging dataset evaluating the adaptability of learnable filters to different frequency distributions.}}
-\label{tab:clinicdb_domain_adaptation}
+\caption{{\color{blue} Performance comparison on the ClinicDB dataset over five independent data splits.
+For each split, 80\% of the images are used for training, 10\% for validation,
+and 10\% for testing. For each data split, all compared models use the same
+model-training seed (2026), and the results are reported as mean $\pm$
+standard deviation across the five data splits.}}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Method} & \textbf{Val Dice (\%)} & \textbf{Val IoU (\%)} & \textbf{Test Dice (\%)} & \textbf{Test IoU (\%)} \\
 \midrule
-Baseline UNet (MK\_UNet)          & 91.13 & 85.21 & 93.38 & 88.38 \\
-WCANet (Fixed Haar Filters)       & 91.60 & 86.14 & 93.89 & 89.07 \\
+Baseline UNet (MK\_UNet)          & 89.91 $\pm$ 0.63 & 83.46 $\pm$ 0.93 & 93.59 $\pm$ 0.98 & 88.46 $\pm$ 1.43 \\
+WCANet (Fixed Haar Filters)       & 90.95 $\pm$ 0.39 & 84.91 $\pm$ 0.56 & 93.75 $\pm$ 0.67 & 88.77 $\pm$ 0.72 \\
 \rowcolor[gray]{0.92}
-WCANet (Learnable Filters, Ours)  & \textbf{92.68} & \textbf{87.20} & \textbf{94.41} & \textbf{89.69} \\
+WCANet (Learnable Filters, Ours)  & \textbf{91.16 $\pm$ 0.60} & \textbf{85.43 $\pm$ 0.87} & \textbf{94.28 $\pm$ 0.60} & \textbf{89.26 $\pm$ 0.75} \\
 \bottomrule
 \end{tabular}
+\label{tab:clinicdb_domain_adaptation}
 \end{table*}
 
 \begin{figure*} [pos=h]
