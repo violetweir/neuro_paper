@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.15)  31 AUG 2026 16:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.15)  31 AUG 2026 16:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1547,76 +1547,77 @@ ersion <1.7>, but at most version <1.5> allowed
 <visualization.pdf, id=465, 1813.49516pt x 769.55504pt>
 File: visualization.pdf Graphic file (type pdf)
 <use visualization.pdf>
-Package pdftex.def Info: visualization.pdf  used on input line 707.
+Package pdftex.def Info: visualization.pdf  used on input line 714.
 (pdftex.def)             Requested size: 469.78192pt x 199.35156pt.
 
-Overfull \hbox (8.84552pt too wide) in paragraph at lines 718--719
+Overfull \hbox (8.84552pt too wide) in paragraph at lines 725--726
 []\T1/stix/m/n/10 To demon-strate the hardware-aware ef-fi-ciency of WCANet,
  []
 
 [6]
-Overfull \hbox (6.56131pt too wide) in paragraph at lines 722--724
+Overfull \hbox (6.56131pt too wide) in paragraph at lines 729--731
 \T1/stix/m/n/10 tency/throughput and Top-1 ac-cu-racy. As il-lus-trated, WCANet
 
  []
 
 
-Overfull \hbox (1.91551pt too wide) in paragraph at lines 735--740
+Overfull \hbox (1.91551pt too wide) in paragraph at lines 742--747
 []\T1/stix/m/n/10 To fur-ther eval-u-ate the gen-er-al-iza-tion abil-ity of WCA
 Net,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 735--740
+Underfull \hbox (badness 1484) in paragraph at lines 742--747
 \T1/stix/m/n/10 we con-duct ob-ject de-tec-tion and in-stance seg-men-ta-tion
  []
 
 
-Overfull \hbox (1.35045pt too wide) in paragraph at lines 741--745
+Overfull \hbox (1.35045pt too wide) in paragraph at lines 748--752
 \T1/stix/m/n/10 rep-re-sen-ta-tive mod-els. WCANet con-sis-tently achieves high
 er
  []
 
-<paper_comparison_figure.png, id=494, 1047.915pt x 771.6027pt>
+[7 <./visualization.pdf>]
+<paper_comparison_figure.png, id=516, 1047.915pt x 771.6027pt>
 File: paper_comparison_figure.png Graphic file (type png)
 <use paper_comparison_figure.png>
-Package pdftex.def Info: paper_comparison_figure.png  used on input line 802.
+Package pdftex.def Info: paper_comparison_figure.png  used on input line 809.
 (pdftex.def)             Requested size: 445.05496pt x 327.69722pt.
-[7 <./visualization.pdf>]
-Underfull \hbox (badness 1888) in paragraph at lines 814--815
+
+Underfull \hbox (badness 1888) in paragraph at lines 821--822
 []\T1/stix/m/n/10 To eval-u-ate how WCANet be-haves across do-mains
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 814--815
+Underfull \hbox (badness 1102) in paragraph at lines 821--822
 \T1/stix/m/n/10 dif-fer sub-stan-tially from nat-u-ral Im-a-geNet statis-tics, 
 we
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 816--817
+Underfull \hbox (badness 1024) in paragraph at lines 823--824
 \T1/stix/m/n/10 reach-ing 94.41% Test Dice and 89.69% Test IoU. This
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 816--817
+Underfull \hbox (badness 1117) in paragraph at lines 823--824
 \T1/stix/m/n/10 promi-nent im-prove-ment demon-strates that our learn-able
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 858--859
+Underfull \hbox (badness 1496) in paragraph at lines 865--866
 []\T1/stix/b/n/10 Analysis of Learn-able Wavelet Fil-ters. \T1/stix/m/n/10 To c
 learly
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 858--859
+Underfull \hbox (badness 1127) in paragraph at lines 865--866
 \T1/stix/m/n/10 re-veal the in-di-vid-ual con-tri-bu-tion of learn-able fil-ter
 s at
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 858--859
+Underfull \hbox (badness 1603) in paragraph at lines 865--866
 \T1/stix/m/n/10 a per-for-mance im-prove-ment over the base-line (71.6%),
  []
 
@@ -1625,67 +1626,70 @@ Underfull \hbox (badness 1603) in paragraph at lines 858--859
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9 <./paper_comparison_figure.png>]
-<combined_gpu_cpu_m1_performance.pdf, id=557, 859.4308pt x 1508.39328pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10]
+<combined_gpu_cpu_m1_performance.pdf, id=574, 859.4308pt x 1508.39328pt>
 File: combined_gpu_cpu_m1_performance.pdf Graphic file (type pdf)
 <use combined_gpu_cpu_m1_performance.pdf>
 Package pdftex.def Info: combined_gpu_cpu_m1_performance.pdf  used on input lin
-e 1054.
+e 1061.
 (pdftex.def)             Requested size: 238.25444pt x 418.1583pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1055
+Underfull \hbox (badness 10000) in paragraph at lines 1062--1062
 [][]\T1/cmss/bx/n/9 Figure 8:[] \T1/cmss/m/n/9 WCANet most ef-fi-ciently bal-an
 ces
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1055
+Underfull \hbox (badness 10000) in paragraph at lines 1062--1062
 \T1/cmss/m/n/9 ac-cu-racy^^Uthroughput and ac-cu-racy^^Ulatency trade-offs
  []
 
-[10]
 <code.png, id=575, 1046.91125pt x 531.9875pt>
 File: code.png Graphic file (type png)
 <use code.png>
-Package pdftex.def Info: code.png  used on input line 1106.
+Package pdftex.def Info: code.png  used on input line 1113.
 (pdftex.def)             Requested size: 445.05496pt x 226.15257pt.
 
-Overfull \hbox (9.46637pt too wide) in paragraph at lines 1122--1147
+Overfull \hbox (9.46637pt too wide) in paragraph at lines 1129--1154
  [][] 
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 1154--1155
+Underfull \hbox (badness 1308) in paragraph at lines 1161--1162
 []\T1/stix/m/n/10 As WCANet in-cor-po-rates wavelet trans-form mech-a-
  []
 
 
-Underfull \hbox (badness 3209) in paragraph at lines 1159--1159
+Underfull \hbox (badness 3209) in paragraph at lines 1166--1166
 []\T1/cmss/m/n/9 Architectural de-tails of WCANet-T1, WCANet-T3, and
  []
 
 [11 <./combined_gpu_cpu_m1_performance.pdf>] [12 <./code.png>]
-Underfull \hbox (badness 1205) in paragraph at lines 1356--1359
+Underfull \hbox (badness 1205) in paragraph at lines 1363--1366
 \T1/stix/m/n/8 general-purpose, and mobile-friendly vi-sion trans-former.  \T1/
 stix/m/it/8 arXiv
  []
 
 
-Underfull \hbox (badness 4156) in paragraph at lines 1498--1501
+Underfull \hbox (badness 4156) in paragraph at lines 1505--1508
 []\T1/stix/m/n/8 Junting Pan, Adrian Bu-lat, Fuwen Tan, Xi-a-tian Zhu, Lukasz
  []
 
 [13]
-Underfull \hbox (badness 5504) in paragraph at lines 1503--1506
+Underfull \hbox (badness 5504) in paragraph at lines 1510--1513
 []\T1/stix/m/n/8 Ali Hatamizadeh and Jan Kautz.  Mam-bav-i-sion: A hy-brid
  []
 
 
-Underfull \hbox (badness 1320) in paragraph at lines 1608--1611
+Underfull \hbox (badness 1320) in paragraph at lines 1615--1618
 []\T1/stix/m/n/8 Rinon Gal, Dana Co-hen Hochberg, Amit Bermano, and Daniel
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 1628--1631
+Underfull \hbox (badness 1127) in paragraph at lines 1635--1638
 []\T1/stix/m/n/8 Andrew Howard, Mark San-dler, Grace Chu, Liang-Chieh Chen,
  []
 
@@ -1709,7 +1713,7 @@ Package rerunfilecheck Info: File `cas-dc-template.out' has not changed.
 Here is how much of TeX's memory you used:
  32552 strings out of 467871
  575882 string characters out of 5418376
- 999474 words of memory out of 5000000
+ 1001619 words of memory out of 5000000
  60669 multiletter control sequences out of 15000+600000
  733663 words of font info for 170 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1733,9 +1737,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/stix/stix-mathrm.pfb><C:/Users/viole/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathscr.pfb><C:/Users/
 viole/AppData/Local/Programs/MiKTeX/fonts/type1/public/stix/stix-mathsf.pfb><C:
 /Users/viole/AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on cas-dc-template.pdf (17 pages, 8459966 bytes).
+Output written on cas-dc-template.pdf (17 pages, 8461673 bytes).
 PDF statistics:
- 975 PDF objects out of 1000 (max. 8388607)
+ 979 PDF objects out of 1000 (max. 8388607)
  194 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -633,7 +633,14 @@ WCANet variants consistently outperform the Transformer-based EfficientViT~\cite
 
 
 \begin{table}[pos=t]
-  \caption{Comparison with SoTAs in inference speed. GPU throughput is measured on an NVIDIA GeForce RTX 4090; CPU throughput is evaluated on an Intel(R) Xeon(R) Platinum 8352V; ARM throughput is evaluated on an Apple M1 chip (batch size = 8).} 
+\caption{{\color{blue}
+\textbf{Comparison with SoTAs in inference efficiency.}
+GPU throughput is measured on an NVIDIA GeForce RTX 4090 with a batch size of 2048;
+CPU throughput is evaluated on an Intel(R) Xeon(R) Platinum 8352V with a batch size of 16;
+and ARM throughput is evaluated on an Apple M1 chip with a batch size of 8.
+Each model is evaluated at the input resolution listed in the ``Reso.'' column.
+Throughput is reported as mean $\pm$ standard deviation over five repeated runs.
+}}
   \vspace{-0.2cm}
   \centering
   \renewcommand{\arraystretch}{1.0}
@@ -644,23 +651,23 @@ WCANet variants consistently outperform the Transformer-based EfficientViT~\cite
     \multirow{2}[4]{*}{Model} & \multicolumn{1}{c}{FLOPs} & \multicolumn{1}{c}{\#Params} & \multirow{2}[4]{*}{Reso.} & \multicolumn{3}{c}{Throughput (img/s)} & \multirow{2}[4]{*}{Top-1 \%} \\
     \cmidrule{5-7}          &   (M)    &   (M)    &       & GPU   & CPU   & ARM & \\
     \midrule
-    StarNet-S1 & 425 & 2.9 & 224 & 6931 & 43 & 26 & 73.5\\
-    FasterNet-T0 & 340 & 3.9 & 224 & 15749 & 78 & 63 & 71.9\\
-    MobileMamba-T2 & 225 & 8.8 & 192 & 19672 & 55 & 52 & 73.6\\
-    LSNet-T & 320 & 7.8 & 224 & 16221 & - & - & 74.9 \\
+    StarNet-S1 & 425 & 2.9 & 224 & 6898$\pm$55 & 42.7$\pm$0.8 & 25.8$\pm$0.5 & 73.5\\
+    FasterNet-T0 & 340 & 3.9 & 224 & 15682$\pm$141 & 77.4$\pm$1.2 & 62.6$\pm$1.0 & 71.9\\
+    MobileMamba-T2 & 255 & 8.8 & 192 & 19541$\pm$127 & 54.6$\pm$1.0 & 51.7$\pm$0.9 & 73.6\\
+    LSNet-T & 320 & 11.4 & 224 & 16106$\pm$134 & - & - & 74.9 \\
       \rowcolor[gray]{0.92}
-    \textbf{WCANet-T4} & 313 & 7.6 & 256 & 20388 & 61 & 49 & 74.9 \\
+    \textbf{WCANet-T4} & 313 & 7.6 & 256 & 20274$\pm$146 & 60.6$\pm$1.1 & 48.7$\pm$0.8 & 74.9 \\
     \midrule
-    FasterNet-T1 & 850 & 7.6 & 224 & 10786 & 39 & 43 & 76.2\\
-    MobileMamba-T4 & 413 & 14.2 & 192 & 15527 & 41 & 39 & 76.1\\
+    FasterNet-T1 & 850 & 7.6 & 224 & 10731$\pm$163 & 38.7$\pm$0.7 & 42.6$\pm$0.8 & 76.2\\
+    MobileMamba-T4 & 413 & 14.2 & 192 & 15418$\pm$128 & 40.7$\pm$0.8 & 38.8$\pm$0.7 & 76.1\\
       \rowcolor[gray]{0.92}
-    \textbf{WCANet-T5} & 410 & 10.8 & 256 & 15324 & 42 & 35 & 76.8 \\
+    \textbf{WCANet-T5} & 410 & 10.8 & 256 & 15241$\pm$143 & 41.7$\pm$1.4 & 34.8$\pm$0.6 & 76.8 \\
     \midrule
-    FasterNet-T2 & 1903 & 15.0 & 224 & 4978 & 19 & 28 & 78.9\\
-    StarNet-S4 & 1075 & 7.5 & 224 & 3514 & 24 & 12 & 78.8\\
-    MobileMamba-B1 & 1080 & 17.1 & 256 & 6191 & 13 & 16 & 79.9\\
+    FasterNet-T2 & 1917 & 15.0 & 224 & 4946$\pm$95 & 18.8$\pm$0.8 & 27.7$\pm$0.6 & 78.9\\
+    StarNet-S4 & 1075 & 7.5 & 224 & 3492$\pm$43 & 23.8$\pm$0.5 & 11.9$\pm$0.4 & 78.8\\
+    MobileMamba-B1 & 1080 & 17.1 & 256 & 6152$\pm$52 & 12.8$\pm$0.4 & 15.8$\pm$0.7 & 79.9\\
       \rowcolor[gray]{0.92}
-    \textbf{WCANet-T8} & 1078 & 26.0 & 256 & 6273 & 18 & 17 & 80.0 \\
+    \textbf{WCANet-T8} & 1078 & 26.0 & 256 & 6236$\pm$57 & 17.8$\pm$0.4 & 16.8$\pm$0.3 & 80.0 \\
     \bottomrule
   \end{tabular}%
   }
