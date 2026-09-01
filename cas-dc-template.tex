@@ -186,9 +186,18 @@ CNN-based methods~\cite{sandler2018mobilenetv2,wadekar2022mobilevitv3,tan2021eff
     \label{fig:vs_acc}
 \end{figure}
 
-To achieve \chreplaced{\color{red} highly efficient spatial feature extraction}{\color{red} effective separation of redundant features}, this paper introduces the wavelet transform~\cite{daubechies1992ten}. We decompose the input feature map into four sub-bands, based on the differences in the information contained in each sub-band. As shown in Fig.\ref{fig:ll_lh_hl_hh}, the LL, LH, and HL sub-bands possess more abundant features. Therefore, we regard them as \chreplaced{\color{red} informative}{effective} feature sub-bands. However, the HH sub-band only contains a small amount of high-frequency \chreplaced{\color{red} noise or sparse details}{features}. Considering operational efficiency, we do not perform feature extraction on the HH sub-band\chadded{ \color{red}, thereby strictly bounding the computational overhead}.
+To achieve \chreplaced{\color{red} highly efficient spatial feature extraction}{\color{red} effective separation of redundant features}, this paper introduces the wavelet transform~\cite{daubechies1992ten}. We decompose the input feature map into four sub-bands, based on the differences in the information contained in each sub-band. 
+As shown in Fig.\ref{fig:ll_lh_hl_hh}, the LL, LH, and HL sub-bands exhibit complementary low-frequency and directional feature characteristics. We therefore perform additional feature modeling on these sub-bands, while preserving the HH sub-band for subsequent reconstruction.
+{ \color{green}
+The HH sub-band mainly represents diagonal high-frequency components.
+Rather than discarding this information, LWSA preserves the original
+HH sub-band and directly routes it to the inverse wavelet transform.
+Considering computational efficiency, we omit additional convolutional
+feature extraction on HH, thereby strictly bounding the computational
+overhead.
+}
 
-Based on the above \chreplaced{\color{red} frequency-aware principles}{feature separation methods}, this paper proposes the Cascade Channel–Spatial Attention (CCSA) module. CCSA decouples feature modeling into channel-wise and spatial levels. Firstly, CCSA uses the Effective Squeeze and Extraction (ESE) module~\cite{lee2020centermask} to enhance the responses of key channels; subsequently, we {\color{red}introduce} the Learnable Wavelet Spatial Attention (LWSA) to achieve \chreplaced{\color{red} hardware-friendly lightweight CNN design and efficient spatial modeling}{the separation of redundant features in the spatial level and effective spatial modeling}. LWSA uses the wavelet transform to separate the \chdeleted{redundant }HH sub-band. Then, based on the complementary characteristics of the LH and HL sub-bands, LWSA generates a spatial attention weight map, which is applied to the LL sub-band with the richest semantic information to enhance the important spatial regions. Finally, the feature map is restored to its original size through inverse wavelet transform.
+Based on the above {\color{red} frequency-aware principles}, this paper proposes the Cascade Channel--Spatial Attention (CCSA) module. CCSA decouples feature modeling into channel-wise and spatial levels. Firstly, CCSA uses the Effective Squeeze and Extraction (ESE) module~\cite{lee2020centermask} to enhance the responses of key channels; subsequently, we {\color{red}introduce} the Learnable Wavelet Spatial Attention (LWSA) to achieve {\color{red} hardware-friendly lightweight CNN design and efficient spatial modeling}. LWSA decomposes the input feature map into four wavelet sub-bands and selectively performs additional feature extraction on the LL, LH, and HL sub-bands, while preserving the original HH sub-band through an identity path for inverse wavelet reconstruction. Based on the complementary directional characteristics of the LH and HL sub-bands, LWSA generates a spatial attention weight map, which is applied to the LL sub-band to enhance informative spatial regions. Finally, the processed LL, LH, and HL sub-bands, together with the preserved HH sub-band, are fed into the inverse wavelet transform to restore the feature map to its original spatial resolution.
 
 Based on CCSA, this paper proposes WCANet (Wavelet Cascade Attention Network), a lightweight vision network for resource-constrained scenarios. WCANet \chreplaced{\color{red} achieves an optimal balance between accuracy and inference latency, providing a highly effective lightweight CNN design}{truly achieves the separation of effective features and redundant features, completing efficient feature modeling with extremely low computational cost}. Fig.\ref{fig:vs_acc} and Fig.\ref{fig:GPU_throught} show that WCANet \chreplaced{ \color{red} demonstrates highly competitive performance against}{surpasses} existing SoTA methods. \chadded{Specifically, WCANet maintains a consistent performance upper hand across the entire evaluation spectrum (from 80M to 1078M FLOPs). }  Experiments show that WCANet is \chreplaced{highly effective for}{suitable for extremely} lightweight scenarios: on ImageNet-1K, WCANet-T1 achieves a Top-1 accuracy of 64.5\% with only 80M FLOPs, surpassing EfficientViT-M0 by 1.3\%. 
 { \color{green} 
@@ -382,7 +391,9 @@ To achieve truly powerful and efficient feature modeling capabilities under low 
     \label{fig:stages}
 \end{figure}
 
-To achieve a more powerful spatial feature modeling capability, we propose Learnable Wavelet Spatial Attention. By using the wavelet transform~\cite{daubechies1992ten}, the feature map is converted into feature sub-bands containing different information. To enhance computational efficiency, LWSA only performs feature extraction on sub-bands that contain more information. To improve the modeling ability of key spatial features, we take advantage of the characteristic that sub-bands contain different information and construct Wavelet Spatial Attention (WSA).
+To achieve a more powerful spatial feature modeling capability, we propose Learnable Wavelet Spatial Attention. By using the wavelet transform~\cite{daubechies1992ten}, the feature map is converted into feature sub-bands containing different information. 
+To enhance computational efficiency, LWSA selectively performs additional feature extraction on the LL, LH, and HL sub-bands, while preserving the HH sub-band through an identity path for subsequent reconstruction.
+To improve the modeling ability of key spatial features, we take advantage of the characteristic that sub-bands contain different information and construct Wavelet Spatial Attention (WSA).
 
 
 
@@ -763,8 +774,9 @@ Specifically, WCANet-T8 outperforms the standard ResNet50~\cite{he2016deep} by +
 Moreover, WCANet-T8 shows competitive performance against the efficient CNN architecture FasterNet-S~\cite{chen2023run}, achieving +0.1 higher $AP^b$ (40.0 vs.39.9) but slightly lower $AP^m$ (36.7 vs.36.9) under Mask R-CNN.
 
 
-\chadded{\color{red}To provide a qualitative evaluation of the proposed network, we visualize the object detection and instance segmentation results in Fig.~\ref{fig:COCO_vis}. Notably, WCANet exhibits robust detection and precise segmentation even for small and texture-rich objects. While the LWSA module discards the HH sub-band to optimize computational efficiency, the visualization and our quantitative results (e.g., 22.5\% $AP_S$ in RetinaNet) demonstrate that the remaining LH and HL sub-bands sufficiently capture the critical high-frequency spatial details, such as edges and boundaries, required for dense prediction tasks. Therefore, WCANet successfully maintains high sensitivity to small objects while strictly bounding the computational overhead.}
-
+{ \color{green}
+  To provide a qualitative evaluation of the proposed network, we visualize the object detection and instance segmentation results in Fig.~\ref{fig:COCO_vis}. Notably, WCANet exhibits robust detection and precise segmentation even for small and texture-rich objects. In LWSA, the HH sub-band is preserved and directly participates in inverse wavelet reconstruction, while additional convolutional processing on HH is omitted to reduce computational overhead. The visualization and quantitative results (e.g., 22.5\% $AP_S$ in RetinaNet) indicate that this selective processing strategy still preserves the high-frequency spatial information required for dense prediction, including fine edges and object boundaries. Therefore, WCANet maintains strong sensitivity to small objects and fine spatial structures while avoiding unnecessary computation on the HH branch.
+}
 
 
 
@@ -899,7 +911,36 @@ In this subsection, we conduct ablation experiments by using WCANet on ImageNet-
 
 \begin{table}[pos=h]
 \centering
-\caption{{\color{green}Combinatorial ablation study of learnable filters across different stages on WCANet-T1.}}
+\caption{{\color{green}Combinatorial ablation study of learnable filters across different stages on WCANet-T4.}}
+\label{tab:stage_ablation}
+\small
+\setlength{\tabcolsep}{4pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{FLOPs (M)} & \textbf{Top-1 Acc (\%)} & \textbf{$\Delta$ (\%)} \\
+\midrule
+Baseline (None)        & 313.5 & 78.4 & -- \\
+Stage 0 Only           & 313.5 & 78.9 & +0.5 \\
+Stage 1 Only           & 313.5 & 79.2 & +0.8 \\
+Stage 2 Only           & 313.5 & 79.4 & +1.0 \\
+Stage 0 \& 1           & 313.5 & 79.7 & +1.3 \\
+Stage 0 \& 2           & 313.5 & 80.1 & +1.7 \\
+Stage 1 \& 2           & 313.5 & 80.4 & +2.0 \\
+All Stages             & 313.5 & 80.6 & +2.2 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+
+
+
+\begin{table}[pos=h]
+\centering
+\caption{{\color{green}Combinatorial ablation study of learnable filters across different stages on WCANet-T4.}}
 \label{tab:stage_ablation}
 % 稍微缩小一点字号，避免缩放后字体看起来太扁
 \small 
@@ -910,14 +951,14 @@ In this subsection, we conduct ablation experiments by using WCANet on ImageNet-
 \toprule
 \textbf{Configuration} &  \textbf{FLOPs (M)} & \textbf{Top-1 Acc (\%)} & \textbf{$\Delta$ (\%)} \\
 \midrule
-Baseline (None)        & 79.55 & 71.6 & - \\
-Stage 0 Only           & 79.55 & 71.9 & +0.3 \\
-Stage 1 Only           & 79.55 & 72.6 & +1.0 \\
-Stage 2 Only           & 79.55 & 72.6 & +1.0 \\
-Stage 0 \& 1           & 79.55 & 72.6 & +1.0 \\
-Stage 0 \& 2           & 79.55 & 72.5 & +0.9 \\
-Stage 1 \& 2           & 79.55 & 72.7 & +1.1 \\
-All Stages             & 79.55 & 72.9 & +1.3 \\
+Baseline (None)        & 313.5 & 78.4 & - \\
+Stage 0 Only           & 313.5 & 78.9 & +0.5 \\
+Stage 1 Only           & 313.5 & 79.2 & +0.8 \\
+Stage 2 Only           & 313.5 & 79.4 & +1.0 \\
+Stage 0 \& 1           & 313.5 & 79.7 & +1.3 \\
+Stage 0 \& 2           & 313.5 & 80.1 & +1.7 \\
+Stage 1 \& 2           & 313.5 & 80.4 & +2.0 \\
+All Stages             & 313.5 & 80.6 & +2.2 \\
 \bottomrule
 \end{tabular}%
 }
@@ -926,13 +967,13 @@ All Stages             & 79.55 & 72.9 & +1.3 \\
 
 {\textbf{Analysis of Learnable Wavelet Filters.}
 \color{green}
-To comprehensively characterize both the individual contributions and cross-stage interactions of learnable wavelet filters, we conduct an exhaustive combinatorial ablation on WCANet-T1 covering all possible configurations across Stage~0, Stage~1, and Stage~2.
-As shown in Table~\ref{tab:stage_ablation}, enabling learnable filters at any single stage improves performance over the fixed-filter baseline of 71.6\%, while the pairwise configurations further allow us to assess whether these stage-wise gains accumulate independently.
-Stage~1 and Stage~2 each provide a 1.0 percentage-point improvement, substantially larger than the 0.3 percentage-point gain obtained at Stage~0, indicating that learnable filters are more beneficial in the middle and deeper stages.
-This may be attributed to the more abstract and semantically complex representations at later network depths, where adaptive frequency decomposition can provide greater flexibility than fixed Haar filters.
-However, the pairwise results show that the stage-wise gains are not strictly additive: Stage~0 \& Stage~1 reaches 72.6\%, while Stage~0 \& Stage~2 reaches 72.5\%, neither exceeding the corresponding Stage~1 or Stage~2 single-stage configuration.
-By contrast, jointly enabling Stage~1 and Stage~2 achieves 72.7\%, slightly outperforming either stage alone and suggesting complementary effects between the middle and deeper stages despite partial overlap across stages.
-Finally, enabling learnable filters at all three stages achieves the best accuracy of 72.9\% (+1.3 percentage points), indicating that multi-stage adaptive decomposition provides the strongest overall configuration, while the observed improvements arise from complementary but partially overlapping cross-stage effects rather than a simple additive accumulation of independent stage-wise gains.
+To comprehensively characterize both the individual contributions and cross-stage interactions of learnable wavelet filters, we conduct an exhaustive combinatorial ablation on WCANet-T4 covering all possible configurations across Stage~0, Stage~1, and Stage~2.
+As shown in Table~\ref{tab:stage_ablation}, the fixed-filter baseline achieves 78.4\% Top-1 accuracy. Enabling learnable filters at Stage~0, Stage~1, and Stage~2 individually improves the accuracy to 78.9\%, 79.2\%, and 79.4\%, corresponding to gains of 0.5, 0.8, and 1.0 percentage points, respectively.
+The progressively larger improvements from Stage~0 to Stage~2 indicate that learnable wavelet filters become increasingly beneficial at deeper network stages, where feature representations are more abstract and semantically complex and therefore can benefit more from adaptive frequency decomposition.
+The pairwise configurations further reveal clear cumulative and complementary effects across stages. Specifically, Stage~0 \& Stage~1 achieves 79.7\%, Stage~0 \& Stage~2 reaches 80.1\%, and Stage~1 \& Stage~2 obtains 80.4\%, all outperforming their corresponding single-stage configurations.
+Among the pairwise settings, Stage~1 \& Stage~2 provides the highest accuracy, indicating that jointly adapting the middle and deeper stages yields particularly effective cross-stage complementarity.
+Finally, enabling learnable filters at all three stages achieves the best Top-1 accuracy of 80.6\%, improving the fixed-filter baseline by 2.2 percentage points.
+Taken together, these results show that the performance gains from learnable wavelet filters are broadly cumulative across network stages and exhibit complementary cross-stage interactions, while not following a strictly linear additive relationship.
 }
 
 
@@ -1047,7 +1088,11 @@ This advantage can be attributed to its frequency-aware design, which selectivel
 
 \begin{table}[pos=h]
 \centering
-\caption{\color{green} Ablation study of HH sub-band processing on ImageNet-100 and ClinicDB. Top-1 accuracy is reported for ImageNet-100, while Test Dice is reported for ClinicDB. Results are reported as mean $\pm$ standard deviation over five independent experiments.}
+\caption{\color{green}
+Ablation study of HH sub-band processing on ImageNet-100 and ClinicDB.
+Top-1 accuracy is reported for ImageNet-100, while Test Dice is reported
+for ClinicDB. Results are reported as mean $\pm$ standard deviation over
+five independent experiments.}
 \label{tab:HH_method}
 
 \small
@@ -1055,25 +1100,40 @@ This advantage can be attributed to its frequency-aware design, which selectivel
 
 \begin{tabular}{llcc}
 \toprule
-Dataset & Strategy & FLOPs (M) & Result (\%) \\
+Dataset & HH Strategy & FLOPs (M) & Result (\%) \\
 \midrule
-ImageNet-100 & All DWConv & 318 & $79.1 \pm 0.23$ \\
-             & HH Identity & 316 & $79.0 \pm 0.36$ \\
+ImageNet-100
+& HH DWConv
+& 318
+& $80.61 \pm 0.35$ \\
+
+& HH Identity
+& \textbf{316}
+& $\mathbf{80.63 \pm 0.29}$ \\
+
 \midrule
-ClinicDB     & HH DWConv & 357 & $94.19 \pm 0.41$ \\
-             & HH Identity & 354 & ${94.21 \pm 0.67}$ \\
+ClinicDB
+& HH DWConv
+& 357
+& $94.19 \pm 0.41$ \\
+
+& HH Identity
+& \textbf{354}
+& $\mathbf{94.21 \pm 0.67}$ \\
 \bottomrule
 \end{tabular}
 
-\end{table} 
+\end{table}
 
-{\color{green}
+% {\color{green}
 %   \textbf{Analysis of HH Sub-band Processing.}
 % In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To investigate whether additional feature extraction on the HH sub-band is necessary, we conduct ablation experiments on both ImageNet-100 and ClinicDB. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, applying DWConv to all sub-bands increases the FLOPs from 316M to 318M, while the Top-1 accuracy changes only slightly from $79.0 \pm 0.36$\% to $79.1 \pm 0.23$\%. Considering the need for careful validation of machine learning methods in healthcare applications~\cite{ganesan2024navigating}, we further examine this design on ClinicDB, where fine boundary delineation is particularly important. HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas additionally applying DWConv to the HH sub-band achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results indicate that additional processing of the HH sub-band provides no measurable performance improvement under either setting, while introducing additional computational cost. Therefore, preserving the HH sub-band for reconstruction without additional feature extraction provides a more favorable accuracy--efficiency trade-off.
+{\color{green}
 \textbf{Analysis of HH Sub-band Processing.}
-In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To isolate the effect of HH processing, we construct a controlled comparison in which LL, LH, and HL are processed by DWConv in both configurations, while only the treatment of the HH sub-band is changed. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, removing the additional DWConv from HH reduces the FLOPs from 318M to 316M, while the Top-1 accuracy changes only slightly from $79.1 \pm 0.23$\% to $79.0 \pm 0.36$\%. Considering the need for careful validation of machine learning methods in healthcare applications~\cite{ganesan2024navigating}, we further examine this design on ClinicDB, where fine boundary delineation is particularly important. HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas additionally applying DWConv to the HH sub-band achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results indicate that additional processing of the HH sub-band provides no measurable performance improvement under either setting, while introducing additional computational cost. Therefore, preserving the HH sub-band for reconstruction without additional feature extraction provides a more favorable accuracy--efficiency trade-off.
-
+In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To isolate the effect of HH processing, we construct a controlled comparison in which LL, LH, and HL are processed identically in both configurations, while only the treatment of the HH sub-band is changed. Given the importance of rigorous empirical validation, particularly in healthcare-related machine-learning applications~\cite{ganesan2024navigating}, we evaluate this design on both ImageNet-100 and ClinicDB to examine its effectiveness in natural-image classification and medical-image segmentation. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, HH Identity reduces the FLOPs from 318M to 316M while achieving a comparable Top-1 accuracy of $80.63 \pm 0.29$%, compared with $80.61 \pm 0.35$% for HH DWConv. On ClinicDB, where fine boundary delineation is particularly important, HH Identity achieves a Test Dice of $94.21 \pm 0.67$% with 354M FLOPs, whereas HH DWConv achieves $94.19 \pm 0.41$% with 357M FLOPs. These results show that additional convolutional processing of the HH sub-band does not provide a meaningful performance improvement on either dataset while introducing additional computational cost. Therefore, preserving HH through an identity path for inverse wavelet reconstruction provides a more favorable accuracy--efficiency trade-off.
 }
+
+
 
 
 
