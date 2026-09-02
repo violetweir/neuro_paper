@@ -606,7 +606,7 @@ Tables~\ref{tab:achitecture} and~\ref{tab:achitecture_T8} in the Appendix.
   \centering
   \begin{tabular}{lcccccc}
   \toprule
-  Model & \makecell{Params\\(M)} & \makecell{FLOPs\\(M)} & \makecell{Reso.} & \makecell{Top-1\\(\%)} & {\#Pub} \\
+  Model & \makecell{Params\\(M)} & \makecell{FLOPs\\(M)} & \makecell{Reso.} & \makecell{Top-1\\ (\%)} & {\#Pub} \\
   \toprule
 {EfficientViT-M0~\cite{liu2023efficientvit}} & 2.3 & 79 & 224 & 63.2 & CVPR'23\\
 {MobileNetv3-Lx035~\cite{howard2019searching}} & 2.1 & 77 & 224 & 64.2 & ICCV'19 \\
@@ -724,7 +724,11 @@ spatial alignment during wavelet decomposition and inverse reconstruction.
 }
 
 
-Table~\ref{tab:imagenet} shows the performance of WCANet, compared with other state-of-the-art (SoTA) methods under similar model scales. The different model scales are categorized by FLOPs. Compared with CNNs, WCANet demonstrates consistently superior performance at the same computational cost. Specifically, WCANet-T4 outperforms FasterNet-T0~\cite{chen2023run} by $+3\uparrow$. WCANet-T8 surpasses FasterNet-T2~\cite{chen2023run} by $1.1\uparrow$ in Top-1 while having only 56\% of its FLOPs. Furthermore, WCANet variants consistently surpass StarNet~\cite{ma2024rewrite} counterparts by $1.2\uparrow$ to $3.3\uparrow$ in Top-1. Compared with ViTs, ViMs, and hybrid architectures, WCANet also demonstrates strong competitiveness. Under comparable FLOPs, 
+{\color{blue}
+Table~\ref{tab:imagenet} compares WCANet with representative lightweight architectures from different design paradigms, including CNN-based, Transformer-based, hybrid, and SSM-based models. The selected baselines include both widely used and recent efficient vision models and cover computational budgets comparable to different WCANet variants; accordingly, the models are grouped primarily according to FLOPs for accuracy--efficiency comparison.
+}
+Compared with CNNs, WCANet demonstrates consistently superior performance at the same computational cost. Specifically, WCANet-T4 outperforms FasterNet-T0~\cite{chen2023run} by $+3\uparrow$. WCANet-T8 surpasses FasterNet-T2~\cite{chen2023run} by $1.1\uparrow$ in Top-1 while having only 56\% of its FLOPs. Furthermore, WCANet variants consistently surpass StarNet~\cite{ma2024rewrite} counterparts by $1.2\uparrow$ to $3.3\uparrow$ in Top-1. Compared with ViTs, ViMs, and hybrid architectures, WCANet also demonstrates strong competitiveness. Under comparable FLOPs, 
+
 
 WCANet variants consistently outperform the Transformer-based EfficientViT~\cite{liu2023efficientvit} series in Top-1 accuracy. WCANet-T4 achieves 74.9\% Top-1 accuracy, surpassing the Mamba-based MobileMamba-T2~\cite{he2025mobilemamba} by $+1.3\uparrow$. At approximately 1 GFLOPs, WCANet-T8 achieves 80.0\% Top-1 accuracy, outperforming contemporary architectures at similar computational costs, including MobileMamba-B1~\cite{he2025mobilemamba}, EMO-6M~\cite{zhang2023rethinking}, and ShViT-S4~\cite{yun2024shvit}. These experimental results strongly indicate that by employing LWSA for spatial feature extraction and the ESE module for inter-channel information fusion, the proposed model performs very well in terms of classification accuracy.
 
@@ -874,7 +878,9 @@ subsequently decayed using cosine annealing. Gradient clipping with a maximum
 norm of 0.1 is applied throughout training. No additional task-specific
 hyperparameter tuning is performed.
 
-Table \ref{tab:coco} shows the comparison between WCANet and representative models.
+{\color{blue}
+Table~\ref{tab:coco} compares WCANet with representative backbones from different architectural paradigms, including CNN-based, Transformer-based, and MetaFormer-style models.
+}
 WCANet consistently achieves higher average precision (AP) than conventional CNN baselines under comparable model complexity.
 Specifically, WCANet-T8 outperforms the standard ResNet50~\cite{he2016deep} by +2.3 $AP^b$ with RetinaNet, and by +2.0 $AP^b$ and +2.3 $AP^m$ with Mask R-CNN.
 Moreover, WCANet-T8 shows competitive performance against the efficient CNN architecture FasterNet-S~\cite{chen2023run}, achieving +0.1 higher $AP^b$ (40.0 vs.39.9) but slightly lower $AP^m$ (36.7 vs.36.9) under Mask R-CNN.
@@ -1042,6 +1048,9 @@ preprocessing, optimization, and evaluation protocol, such that only the
 architectural component under investigation is changed in each controlled
 comparison. Unless otherwise specified, WCANet-T4 is used as the default
 model for the ablation studies.
+}
+{\color{blue}
+We evaluate the learnable wavelet filters, LWSA design choices, sub-band processing strategies, and CCSA components through a series of controlled experiments.
 }
 
 \begin{table}[pos=h]
