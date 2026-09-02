@@ -477,6 +477,13 @@ Ilya Loshchilov and Frank Hutter.
 \newblock Decoupled weight decay regularization.
 \newblock {\em arXiv preprint arXiv:1711.05101}, 2017.
 
+\bibitem{bernal2015wm}
+Jorge Bernal, F.~Javier S{\'a}nchez, Gloria Fern{\'a}ndez-Esparrach, Debora
+  Gil, Cristina Rodr{\'i}guez, and Fernando Vilari{\~n}o.
+\newblock Wm-dova maps for accurate polyp highlighting in colonoscopy:
+  Validation vs. saliency maps from physicians.
+\newblock {\em Computerized Medical Imaging and Graphics}, 43:99--111, 2015.
+
 \bibitem{rahman2025mk}
 Md~Mostafijur Rahman and Radu Marculescu.
 \newblock Mk-unet: Multi-kernel lightweight cnn for medical image segmentation.
@@ -489,14 +496,6 @@ S~Ravishankar and Gopi Battineni.
   on feature engineering.
 \newblock {\em Journal of Computational and Cognitive Engineering},
   4(1):56--63, 2025.
-
-\bibitem{graham2021levit}
-Benjamin Graham, Alaaeldin El-Nouby, Hugo Touvron, Pierre Stock, Armand Joulin,
-  Herv{\'e} J{\'e}gou, and Matthijs Douze.
-\newblock Levit: a vision transformer in convnet's clothing for faster
-  inference.
-\newblock In {\em Proceedings of the IEEE/CVF international conference on
-  computer vision}, pages 12259--12269, 2021.
 
 \bibitem{ganesan2024navigating}
 Swathi Ganesan, Nalinda Somasiri, et~al.

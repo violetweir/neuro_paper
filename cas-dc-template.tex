@@ -558,7 +558,12 @@ downsampling, we leverage the depth-wise and point-wise
 convolution to reduce the spatial resolution and modulate
 the channel dimension, respectively. Besides, we stack CCSA blocks in all stages. Finally, the feature map is processed by global average pooling and a classifier to produce the final class prediction.
 
-We build multiple WCANet variants to accommodate different computational budgets. Under an input resolution of 256×256, their FLOPs range from 80M to 650M, namely WCANet-T0, WCANet-T1, WCANet-T2, WCANet-T2P5, WCANet-T3, WCANet-T4, WCANet-T5, and WCANet-T6. Additionally, to better suit downstream dense prediction tasks, we also design a four-stage WCANet variant with 64× downsampling: WCANet-T8.
+We build multiple WCANet variants to accommodate different computational budgets. Under an input resolution of 256×256, their FLOPs range from 80M to 650M, namely WCANet-T1, WCANet-T2, WCANet-T2d5, WCANet-T3, WCANet-T4, WCANet-T5, and WCANet-T6. Additionally, to better suit downstream dense prediction tasks, we also design a four-stage WCANet variant with 64× downsampling: WCANet-T8.
+{\color{blue}
+Detailed stage-wise architectural configurations, including feature resolutions,
+channel dimensions, and numbers of CCSA blocks, are provided in
+Tables~\ref{tab:achitecture} and~\ref{tab:achitecture_T8} in the Appendix.
+}
 
 
 
@@ -671,13 +676,52 @@ MobileMamba-B1~\cite{he2025mobilemamba} & 17.1 & 1080 & 256 & 79.9 & CVPR'25 \\
 \section{Experiments}
 
 
+{\color{blue}
+To comprehensively evaluate WCANet under different visual tasks and
+computational conditions, we conduct experiments on ImageNet-1K for image
+classification, COCO-2017 for object detection and instance segmentation,
+and ClinicDB for medical image segmentation. We additionally evaluate
+hardware-aware inference efficiency on GPU, x86 CPU, and ARM-based platforms.
+For the relatively small ClinicDB dataset, robustness to dataset partitioning
+is further assessed over five independently generated data splits.
+}
+
+{\color{blue}
+We adopt task-specific standard evaluation metrics. Top-1 accuracy is used
+for ImageNet-1K classification, together with model parameters, FLOPs, and
+measured throughput for computational and practical efficiency evaluation.
+For COCO-2017, we report standard AP metrics at different IoU thresholds
+and object scales for both bounding-box detection and instance segmentation.
+For ClinicDB, Dice and IoU are used to evaluate the overlap between the
+predicted and ground-truth segmentation masks.
+}
+
+
 \subsection{Image Classification}
 
 % We conduct experiments on the ImageNet-1K~\cite{deng2009imagenet} dataset to evaluate the performance of WCANet on the image classification task. 
 % \chadded{To ensure a fair and rigorous comparison against baselines spanning different publication years, we explicitly document our training protocol. Specifically, WCANet is trained entirely from scratch without relying on Knowledge Distillation (KD), additional pre-training datasets, or multi-scale training procedures. The detailed hyperparameters and data augmentation strategies are fully documented in Table~\ref{tab:train_detail}.} 
 % The overall training protocol is similar to that of~\cite{liu2023efficientvit,wang2025lsnet,he2025mobilemamba}, {.............}except that WCANet uses an input image resolution of $256 \times 256$ and a learning rate that is cosine-annealed from 3e-3 to 1e-5.
 
-We conduct experiments on the ImageNet-1K~\cite{deng2009imagenet} dataset to evaluate the performance of WCANet on the image classification task. {To ensure a fair and rigorous comparison against baselines spanning different publication years, we explicitly document our training protocol. Specifically, WCANet is trained entirely from scratch without relying on Knowledge Distillation (KD), additional pre-training datasets, or multi-scale training procedures. The detailed hyperparameters and data augmentation strategies are fully documented in Table~\ref{tab:train_detail}.} The overall training protocol is similar to that of~\cite{liu2023efficientvit,wang2025lsnet,he2025mobilemamba}, except that WCANet uses an input image resolution of $256 \times 256$ and a learning rate that is cosine-annealed from 3e-3 to 1e-5. {As WCANet incorporates wavelet transform mechanisms across multiple stages, the maximum downsampling factor of the network reaches 128. To ensure the complete alignment of feature dimensions, the input resolution must be perfectly divisible by this factor. Therefore, WCANet uses an input image resolution of $256 \times 256$.}
+We conduct experiments on the ImageNet-1K~\cite{deng2009imagenet} dataset to evaluate the performance of WCANet on the image classification task. 
+{\color{blue}
+ImageNet-1K contains 1,281,167 training images and 50,000 validation images
+from 1,000 object categories. The number of training images per category
+ranges from 732 to 1,300, while the validation set contains 50 images for
+each category. We follow the standard ImageNet-1K training and validation
+splits.
+}
+
+{To ensure a fair and rigorous comparison against baselines spanning different publication years, we explicitly document our training protocol. Specifically, WCANet is trained entirely from scratch without relying on Knowledge Distillation (KD), additional pre-training datasets, or multi-scale training procedures. The detailed hyperparameters and data augmentation strategies are fully documented in Table~\ref{tab:train_detail}.} The overall training protocol is similar to that of~\cite{liu2023efficientvit,wang2025lsnet,he2025mobilemamba}, except that WCANet uses an input image resolution of $256 \times 256$ and a learning rate that is cosine-annealed from 3e-3 to 1e-5. 
+{\color{blue}
+As the stage-wise output stride of WCANet reaches $\times64$, the deepest-stage
+feature map has a spatial resolution of $H/64 \times W/64$. Within the LWSA
+block, the wavelet decomposition further reduces the spatial resolution by a
+factor of 2, resulting in a minimum internal resolution corresponding to an
+effective downsampling factor of $\times128$. Therefore, we adopt an input
+resolution of $256\times256$, which is divisible by 128, to maintain exact
+spatial alignment during wavelet decomposition and inverse reconstruction.
+}
 
 
 Table~\ref{tab:imagenet} shows the performance of WCANet, compared with other state-of-the-art (SoTA) methods under similar model scales. The different model scales are categorized by FLOPs. Compared with CNNs, WCANet demonstrates consistently superior performance at the same computational cost. Specifically, WCANet-T4 outperforms FasterNet-T0~\cite{chen2023run} by $+3\uparrow$. WCANet-T8 surpasses FasterNet-T2~\cite{chen2023run} by $1.1\uparrow$ in Top-1 while having only 56\% of its FLOPs. Furthermore, WCANet variants consistently surpass StarNet~\cite{ma2024rewrite} counterparts by $1.2\uparrow$ to $3.3\uparrow$ in Top-1. Compared with ViTs, ViMs, and hybrid architectures, WCANet also demonstrates strong competitiveness. Under comparable FLOPs, 
@@ -809,11 +853,26 @@ Throughput is reported as mean $\pm$ standard deviation over five repeated runs.
 
 \subsection{Object Detection and Segmentation on COCO}
 
-To further evaluate the generalization ability of WCANet, we conduct object detection and instance segmentation experiments on the COCO dataset~\cite{lin2014microsoft}.
-We first pre-train the WCANet in ImageNet-1k, and then use it as the backbone integrated with both RetinaNet~\cite{lin2017focal} and Mask R-CNN~\cite{he2017mask} frameworks.
-The models are trained for 12 epochs (1× schedule) with a total batch size of 16, using an AdamW optimizer~\cite{loshchilov2017decoupled} (learning rate $1\times 10^{-4}$, weight decay 0.05).
-The learning rate is linearly warmed up over the first 500 iterations and then decayed via cosine annealing, with gradient clipping (max norm 0.1).
-No additional hyper-parameter tuning is performed.
+{\color{blue}
+To further evaluate the transferability of WCANet to dense prediction tasks,
+we conduct object detection and instance segmentation experiments on the
+COCO-2017 dataset~\cite{lin2014microsoft}.
+We use the standard COCO-2017 training and validation splits, containing
+118,287 and 5,000 images, respectively. COCO contains 80 object categories
+with bounding-box and instance-level segmentation annotations, enabling
+evaluation of both object detection and instance segmentation under a unified
+benchmark.
+}
+
+WCANet-T8 is first pre-trained on ImageNet-1K and then used as the backbone
+of RetinaNet~\cite{lin2017focal} and Mask R-CNN~\cite{he2017mask}.
+The downstream models are trained for 12 epochs using the $1\times$ schedule
+with a total batch size of 16. We employ AdamW~\cite{loshchilov2017decoupled}
+with an initial learning rate of $1\times10^{-4}$ and a weight decay of 0.05.
+The learning rate is linearly warmed up during the first 500 iterations and is
+subsequently decayed using cosine annealing. Gradient clipping with a maximum
+norm of 0.1 is applied throughout training. No additional task-specific
+hyperparameter tuning is performed.
 
 Table \ref{tab:coco} shows the comparison between WCANet and representative models.
 WCANet consistently achieves higher average precision (AP) than conventional CNN baselines under comparable model complexity.
@@ -830,7 +889,7 @@ Moreover, WCANet-T8 shows competitive performance against the efficient CNN arch
 
 
 
-% To further evaluate the generalization ability of WCANet, we conduct object detection and instance segmentation experiments on the COCO dataset~\cite{lin2014microsoft}. We first pre-train the WCANet in ImageNet-1k, and then use it as the backbone integrated with both RetinaNet~\cite{lin2017focal} and Mask R-CNN~\cite{he2017mask} frameworks. The models are trained for 12 epochs (1× schedule) with a total batch size of 16, using an AdamW optimizer~\cite{loshchilov2017decoupled} (learning rate $1\times 10^{-4}$, weight decay 0.05). The learning rate is linearly warmed up over the first 500 iterations and then decayed via cosine annealing, with gradient clipping (max norm 0.1). No additional hyper-parameter tuning is performed.
+% To further evaluate the generalization ability of WCANet, we conduct object detection and instance segmentation experiments on the COCO dataset~\cite{lin2014microsoft}. We first pre-train the WCANet in ImageNet-1K, and then use it as the backbone integrated with both RetinaNet~\cite{lin2017focal} and Mask R-CNN~\cite{he2017mask} frameworks. The models are trained for 12 epochs (1× schedule) with a total batch size of 16, using an AdamW optimizer~\cite{loshchilov2017decoupled} (learning rate $1\times 10^{-4}$, weight decay 0.05). The learning rate is linearly warmed up over the first 500 iterations and then decayed via cosine annealing, with gradient clipping (max norm 0.1). No additional hyper-parameter tuning is performed.
 
 
 % Table \ref{tab:coco} shows the comparison between WCANet and representative models. WCANet consistently achieves higher average precision (AP) than conventional CNN baselines under comparable model complexity. Specifically, WCANet-T8 outperforms the standard ResNet50~\cite{he2016deep} by +2.3 $AP^b$ with RetinaNet, and by +2.0 $AP^b$ and +2.3 $AP^m$ with Mask R-CNN. Moreover, WCANet-T8 shows competitive performance against the efficient CNN architecture FasterNet-S~\cite{chen2023run}, achieving +0.1 higher $AP^b$ (40.0 vs.39.9) but slightly lower $AP^m$ (36.7 vs.36.9) under Mask R-CNN. 
@@ -919,11 +978,32 @@ WCANet (Learnable Filters, Ours)
 \subsection{\chadded{\color{green}Medical Image Segmentation on ClinicDB}}
 
 
-
-{ \color{green}
-  To evaluate how WCANet behaves across domains where the frequency characteristics of meaningful features differ substantially from natural ImageNet statistics, we conduct further experiments on medical image segmentation using the ClinicDB dataset. Medical images often exhibit highly unique texture, contrast, and edge distributions compared to natural scenarios. Given the relatively small size of ClinicDB, performance obtained from a single data partition may be sensitive to the specific training, validation, and testing split. Therefore, we further evaluate all compared models over five independent data splits. For each split, 80\% of the images are used for training, 10\% for validation, and 10\% for testing. For each split, all compared models use exactly the same training, validation, and testing subsets, while the model-training seed is fixed to 2026. The results are reported as mean $\pm$ standard deviation across the five independent splits.
+{\color{blue}
+To evaluate the cross-domain adaptability of WCANet, we further conduct
+medical image segmentation experiments on the CVC-ClinicDB
+dataset~\cite{bernal2015wm}.
+ClinicDB contains 612 RGB colonoscopy images with corresponding pixel-level
+polyp segmentation masks. All images have an original resolution of
+$384\times288$, and the task is formulated as binary polyp-versus-background
+segmentation. Compared with natural-image benchmarks, the dataset exhibits
+substantially different texture, contrast, illumination, specular reflections,
+and boundary characteristics. For training, all images are resized to
+$352\times352$, while the complete preprocessing, augmentation, optimization,
+and loss settings are provided in the Appendix.
 }
 
+{\color{green}
+Given the relatively small size of ClinicDB, results obtained from a single
+data partition may be sensitive to the particular training, validation, and
+testing split. We therefore conduct experiments over five independently
+generated data splits. For each split, the 612 images are divided into
+489 training images, 61 validation images, and 62 test images, corresponding
+to approximately 80\%, 10\%, and 10\%, respectively. For each data split,
+all compared models use exactly the same training, validation, and testing
+subsets and follow the same training protocol. The model-training seed is
+fixed to 2026 for all compared methods, and the results are reported as
+mean $\pm$ standard deviation across the five independent data splits.
+}
 
 { \color{green}
   As shown in Table~\ref{tab:clinicdb_domain_adaptation}, MK\_UNet~\cite{rahman2025mk} achieves $93.59 \pm 0.98$\% Test Dice and $88.46 \pm 1.43$\% Test IoU. Introducing fixed Haar filters into WCANet yields $93.75 \pm 0.67$\% Test Dice and $88.77 \pm 0.72$\% Test IoU. In contrast, WCANet equipped with our proposed learnable wavelet filters achieves the best average performance, reaching $94.28 \pm 0.60$\% Test Dice and $89.26 \pm 0.75$\% Test IoU. Compared with the fixed-Haar variant, the learnable filters improve the average Test Dice and Test IoU by 0.53 and 0.49 percentage points, respectively. Meanwhile, the standard deviations of the learnable-filter variant remain comparable to those of the fixed-Haar counterpart across different data partitions, indicating that the observed performance improvement is robust to variations in the dataset split rather than being specific to a single partition.
@@ -954,7 +1034,15 @@ The segmentation examples further show that WCANet with learnable filters genera
 
 
 
-In this subsection, we conduct ablation experiments by using WCANet on ImageNet-100, which is a subset of ImageNet-1K. All models are trained under the same settings~\cite{graham2021levit,liu2023efficientvit} with 100 epochs.
+{\color{blue}
+In this subsection, we conduct controlled ablation experiments on
+ImageNet-100, a 100-category subset of ImageNet-1K. All ablation variants
+are trained for 100 epochs using exactly the same dataset partition,
+preprocessing, optimization, and evaluation protocol, such that only the
+architectural component under investigation is changed in each controlled
+comparison. Unless otherwise specified, WCANet-T4 is used as the default
+model for the ablation studies.
+}
 
 \begin{table}[pos=h]
 \centering
@@ -985,31 +1073,6 @@ All Stages             & 313.5 & 80.6 & +2.2 \\
 
 
 
-\begin{table}[pos=h]
-\centering
-\caption{{\color{green}Combinatorial ablation study of learnable filters across different stages on WCANet-T4.}}
-\label{tab:stage_ablation}
-% 稍微缩小一点字号，避免缩放后字体看起来太扁
-\small 
-% 调整列间距（默认是6pt，改小一点可以让缩放的幅度更小，字号显得更大）
-\setlength{\tabcolsep}{4pt} 
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Configuration} &  \textbf{FLOPs (M)} & \textbf{Top-1 Acc (\%)} & \textbf{$\Delta$ (\%)} \\
-\midrule
-Baseline (None)        & 313.5 & 78.4 & - \\
-Stage 0 Only           & 313.5 & 78.9 & +0.5 \\
-Stage 1 Only           & 313.5 & 79.2 & +0.8 \\
-Stage 2 Only           & 313.5 & 79.4 & +1.0 \\
-Stage 0 \& 1           & 313.5 & 79.7 & +1.3 \\
-Stage 0 \& 2           & 313.5 & 80.1 & +1.7 \\
-Stage 1 \& 2           & 313.5 & 80.4 & +2.0 \\
-All Stages             & 313.5 & 80.6 & +2.2 \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
 
 
 {\textbf{Analysis of Learnable Wavelet Filters.}
@@ -1027,7 +1090,7 @@ Taken together, these results show that the performance gains from learnable wav
 
 
 
-% 消融实验我们使用WCANet-T4在ImageNet-100上进行实验。ImageNet-100是ImageNet-1k的子集。所有模型采用相同的训练设置，每个模型均训练100轮。
+% 消融实验我们使用WCANet-T4在ImageNet-100上进行实验。ImageNet-100是ImageNet-1K的子集。所有模型采用相同的训练设置，每个模型均训练100轮。
 
  % \textbf{分析可学习小波滤波器的有效性。}
 
@@ -1343,19 +1406,47 @@ In this work, we propose WCANet, a lightweight neural network that achieves effi
 \section{Appendix}
 
 
-\begin{figure*} 
-    \centering
-    \includegraphics[width=0.9\linewidth]{code.png}
-    \caption{The Pytorch code of LWSA. Due to space limitations, the specific implementation method of creating learnable wavelet filters is not shown.}
-    \label{listing:code}
-\end{figure*}
 
 In this appendix, we provide more details on the experimental setup, architecture configuration, implementation of LWSA, limitations, and future work.
 
-\subsection{ImageNet-1k experimental settings}
+\subsection{ImageNet-1K experimental settings}
 
 
-For the image classification task on ImageNet-1k, our training scheme is shown in Tab.\ref{tab:train_detail}. Since the maximum downsampling of WCANet is $\times128$, we use an image size of $256\times256$ for both training and testing. We found that T6 and T8 did not reach the highest accuracy at 300 rounds, so the training epochs for T6 and T8 are 400 epochs. We use the AdamW optimizer in combination with a cosine learning rate scheduler. The initial learning rate is set to $3\times10^{-3}$, and the total batch size is set to 1024. For data augmentation, we utilized methods such as Mixup, CutMix, and Random Erasing. We also use EMA to enhance the stability of training. {Furthermore, to ensure a smooth startup and prevent gradient instability during the early stages of training, we consistently employ a linear warmup strategy (e.g., 20 epochs for ImageNet-1k) before the cosine learning rate decay.}
+% For the image classification task on ImageNet-1K, our training scheme is shown in Tab.\ref{tab:train_detail}. Since the maximum downsampling of WCANet is $\times128$, we use an image size of $256\times256$ for both training and testing. We found that T6 and T8 did not reach the highest accuracy at 300 rounds, so the training epochs for T6 and T8 are 400 epochs. We use the AdamW optimizer in combination with a cosine learning rate scheduler. The initial learning rate is set to $3\times10^{-3}$, and the total batch size is set to 1024. For data augmentation, we utilized methods such as Mixup, CutMix, and Random Erasing. We also use EMA to enhance the stability of training. {Furthermore, to ensure a smooth startup and prevent gradient instability during the early stages of training, we consistently employ a linear warmup strategy (e.g., 20 epochs for ImageNet-1K) before the cosine learning rate decay.}
+
+
+For the ImageNet-1K classification experiments, the detailed training
+configuration is summarized in Table~\ref{tab:train_detail}. WCANet is trained
+from scratch without knowledge distillation or additional pre-training data.
+The training and evaluation resolutions are both set to $256\times256$.
+{\color{blue}
+During training, images are processed using random resized cropping with an
+area range of $(0.08, 1.0)$ and an aspect-ratio range of $(3/4, 4/3)$,
+followed by random horizontal flipping with a probability of 0.5.
+RandAugment with the \texttt{rand-m9-mstd0.5-inc1} policy is then applied.
+The images are subsequently converted to tensors and normalized using the
+standard ImageNet mean $(0.485, 0.456, 0.406)$ and standard deviation
+$(0.229, 0.224, 0.225)$. Random erasing is further applied with a probability
+of 0.25 using pixel-level replacement.
+}
+{\color{blue}
+For evaluation, each image is first resized to
+$\lfloor 256/0.875 \rfloor = 292$, followed by a center crop of
+$256\times256$. The resulting image is then converted to a tensor and
+normalized using the same ImageNet mean and standard deviation as in training.
+}
+We use AdamW as the optimizer with an initial learning rate of
+$3\times10^{-3}$ and a total batch size of 1024. A linear warmup is applied
+for the first 20 epochs, followed by cosine learning-rate decay.
+WCANet-T1, T2, T2d5, T3, T4, and T5 are trained for 300 epochs, while
+WCANet-T6 and WCANet-T8 are trained for 400 epochs because their training
+had not fully converged after 300 epochs.
+In addition to the above image-level augmentation, Mixup and CutMix are used
+with coefficients of 0.8 and 1.0, respectively, together with label smoothing
+of 0.1. An exponential moving average (EMA) of the model parameters is also
+employed during training.
+
+
 
 \begin{table}
 \centering
@@ -1371,7 +1462,7 @@ Epochs          & \multicolumn{3}{c}{300}   & \multicolumn{2}{|c}{400} \\ \midru
 Batch size &   \multicolumn{5}{c}{1024}  \\ 
 Optimizer & \multicolumn{5}{c}{AdamW}  \\
 Momentum & \multicolumn{5}{c}{0.9/0.999} \\
-LR & \multicolumn{5}{c}{3e-4} \\
+LR & \multicolumn{5}{c}{3e-3} \\
 LR decay  & \multicolumn{5}{c}{cosine} \\
 Warmup epochs & \multicolumn{5}{c}{20} \\
 Warmup schedule & \multicolumn{5}{c}{linear} \\ \midrule
@@ -1390,10 +1481,41 @@ Dropout  & \multicolumn{4}{c|}{\ding{55}} & 0.01  \\ \midrule
 
 
 
+\subsection{ClinicDB Experimental Settings}
+
+{\color{blue}
+For the ClinicDB experiments, all compared models follow the same training
+protocol. Input images are resized from the original $384\times288$ resolution
+to $352\times352$. Data augmentation includes random rotations of up to
+$90^\circ$ and random horizontal and vertical flipping. Multi-scale training
+is performed using scales $\{0.75, 1.0, 1.25\}$.
+All models are optimized using AdamW with an initial learning rate of
+$5\times10^{-4}$ and a weight decay of $1\times10^{-4}$ for 200 epochs.
+A cosine annealing learning-rate schedule is adopted with a minimum learning
+rate of $1\times10^{-6}$, and the batch size is set to 8. Gradient clipping
+is applied with a maximum norm of 0.5.
+The training objective is the structure loss, consisting of weighted binary
+cross-entropy and weighted IoU loss. Dice and IoU are used as the evaluation
+metrics. For each of the five independent dataset splits, all compared models
+use the same training, validation, and testing subsets and the same training
+configuration.
+}
+
 
 \subsection{Architectural Details}
 
-{As WCANet incorporates wavelet transform mechanisms across multiple stages, the maximum downsampling factor of the network reaches 128. To ensure the complete alignment of feature dimensions and preserve the structural integrity of the wavelet decomposition, the input resolution must be perfectly divisible by this factor. Therefore, an input resolution of $256 \times 256$ is chosen as an intrinsic architectural requirement, avoiding the extensive feature padding, unnecessary computational overhead, and boundary artifacts that would inevitably arise from using a standard $224 \times 224$ resolution.}
+
+{\color{blue}
+As shown in Tables~\ref{tab:achitecture} and~\ref{tab:achitecture_T8},
+the stage-wise output stride of WCANet reaches $\times64$.
+Within the deepest-stage LWSA block, the wavelet transform further reduces
+the spatial resolution by a factor of 2, resulting in a minimum internal
+spatial resolution corresponding to an effective downsampling factor of
+$\times128$. To maintain exact spatial alignment during wavelet decomposition
+and inverse reconstruction, the input resolution should therefore be divisible
+by 128. Consequently, we adopt an input resolution of $256\times256$, avoiding
+additional padding and the associated computational and boundary effects.
+}
 
 Tab.\ref{tab:achitecture} presents the architectural details of the three-stage WCANet variants, and Tab.\ref{tab:achitecture_T8} shows the details of the four-stage WCANet variants.
 
@@ -1497,13 +1619,6 @@ Tab.\ref{tab:achitecture} presents the architectural details of the three-stage 
 
 
 
-\subsection{The code of LWSA}
-
-
-To present the implementation of LWSA more intuitively, we provide the PyTorch code for LWSA. The specific code is shown in Listing~\ref{listing:code}. Due to space limitations, some functions are not fully displayed.
-
-
-
 
 % \begin{minted}{c}
 % int main() {
@@ -1520,11 +1635,24 @@ To present the implementation of LWSA more intuitively, we provide the PyTorch c
 
 
 { 
-\textbf{Limitation.} While WCANet achieves a favorable speed-accuracy trade-off, our current evaluation focuses on GPU and CPU platforms, with dedicated mobile hardware deployment remaining a primary next step. Additionally, the current stage-dependent kernel size schedule ($k=7, 5, 3$) is fixed, which may not optimally adapt to the varying spatial frequency distributions across highly diverse visual tasks. Finally, as a pure CNN, our model's performance in complex downstream dense prediction tasks still lags slightly behind the latest ViT and SSM-based frameworks.
+\textbf{Limitation.}
+{ \color{blue}
+Although WCANet achieves a favorable speed--accuracy trade-off across GPU,
+CPU, and ARM-based platforms, deployment on dedicated mobile and embedded
+accelerators remains to be further investigated. In addition, the current
+stage-dependent kernel-size schedule ($k=7,5,3$) is fixed and may not optimally
+adapt to the spatial-frequency characteristics of every visual task.
+The current ClinicDB experiments provide initial evidence of the cross-domain
+adaptability of WCANet in medical image segmentation. Further evaluation on
+additional medical-image datasets will be considered in future work to assess
+its broader generalizability.
+}
 
 \textbf{Future Work.} We will validate the model's efficiency on edge devices and publish the results on GitHub. To further bridge the performance gap in downstream tasks, we will explore architectural fusion strategies that integrate WCANet with other paradigms without increasing the computational burden. Furthermore, we intend to investigate dynamic, multi-perspective feature learning strategies, drawing inspiration from recent advancements such as HMPFormer~\cite{usman2025hmpformer}, to enhance the model's architectural flexibility and generalization capability.
 
 }
+
+
 
 
 
