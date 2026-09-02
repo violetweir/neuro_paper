@@ -327,11 +327,14 @@ Since AlexNet~\cite{krizhevsky2012imagenet}, CNNs have been widely applied to va
 
 \subsection{Wavelet Transforms in Deep Learning}
 
-Wavelet transform~\cite{daubechies1992ten} was introduced to enhance the performance of the model in aspects such as multi-scale feature extraction, computational efficiency, or generation quality. The wavelet transform is used as the pooling operator in convolutional networks~\cite{duan2017sar,williams2018wavelet}. The wavelet transform is also employed to compress feature maps to reduce the computational cost of CNNs~\cite{finder2022wavelet}. In terms of network architecture design, some researchers have utilized wavelets for downsampling in the U-Net framework~\cite{ronneberger2015u} and implemented upsampling through inverse wavelet transform~\cite{liu2018multi,alaba2022wcnn3d}. WTConv~\cite{finder2024wavelet} combines wavelet decomposition with convolution operations, effectively expanding the receptive field and enhancing the response to low-frequency structures.
+Wavelet transform~\cite{daubechies1992ten} was introduced to enhance the performance of the model in aspects such as multi-scale feature extraction, computational efficiency, or generation quality. The wavelet transform is used as the pooling operator in convolutional networks~\cite{duan2017sar,williams2018wavelet}. The wavelet transform is also employed to compress feature maps to reduce the computational cost of CNNs~\cite{finder2022wavelet}. In terms of network architecture design, some researchers have utilized wavelets for downsampling in the U-Net framework~\cite{ronneberger2015u} and implemented upsampling through inverse wavelet transform~\cite{liu2018multi,alaba2022wcnn3d}. 
+WTConv~\cite{finder2024wavelet} combines wavelet decomposition with convolution operations, effectively expanding the receptive field and enhancing the response to low-frequency structures.
 {\color{blue}
-However, most existing methods employ predefined wavelet bases and use wavelet decomposition mainly for pooling, compression, sampling, or convolutional feature extraction. The adaptive use of complementary sub-band information for efficient spatial modeling remains less explored.
+Recent work has further explored wavelet-based learning in other application domains~\cite{pillai2025wavelet}.
 }
-
+{\color{blue}
+However, most existing methods employ predefined wavelet bases and use wavelet decomposition mainly for pooling, compression, sampling, convolutional feature extraction, or domain-specific signal analysis. The adaptive use of complementary sub-band information for efficient spatial modeling remains less explored.
+}
 
 
 \subsection{Novelty Compared with Recent Methods}
@@ -730,8 +733,10 @@ Table~\ref{tab:imagenet} compares WCANet with representative lightweight archite
 Compared with CNNs, WCANet demonstrates consistently superior performance at the same computational cost. Specifically, WCANet-T4 outperforms FasterNet-T0~\cite{chen2023run} by $+3\uparrow$. WCANet-T8 surpasses FasterNet-T2~\cite{chen2023run} by $1.1\uparrow$ in Top-1 while having only 56\% of its FLOPs. Furthermore, WCANet variants consistently surpass StarNet~\cite{ma2024rewrite} counterparts by $1.2\uparrow$ to $3.3\uparrow$ in Top-1. Compared with ViTs, ViMs, and hybrid architectures, WCANet also demonstrates strong competitiveness. Under comparable FLOPs, 
 
 
-WCANet variants consistently outperform the Transformer-based EfficientViT~\cite{liu2023efficientvit} series in Top-1 accuracy. WCANet-T4 achieves 74.9\% Top-1 accuracy, surpassing the Mamba-based MobileMamba-T2~\cite{he2025mobilemamba} by $+1.3\uparrow$. At approximately 1 GFLOPs, WCANet-T8 achieves 80.0\% Top-1 accuracy, outperforming contemporary architectures at similar computational costs, including MobileMamba-B1~\cite{he2025mobilemamba}, EMO-6M~\cite{zhang2023rethinking}, and ShViT-S4~\cite{yun2024shvit}. These experimental results strongly indicate that by employing LWSA for spatial feature extraction and the ESE module for inter-channel information fusion, the proposed model performs very well in terms of classification accuracy.
-
+WCANet variants consistently outperform the Transformer-based EfficientViT~\cite{liu2023efficientvit} series in Top-1 accuracy. WCANet-T4 achieves 74.9\% Top-1 accuracy, surpassing the Mamba-based MobileMamba-T2~\cite{he2025mobilemamba} by $+1.3\uparrow$. At approximately 1 GFLOPs, WCANet-T8 achieves 80.0\% Top-1 accuracy, outperforming contemporary architectures at similar computational costs, including MobileMamba-B1~\cite{he2025mobilemamba}, EMO-6M~\cite{zhang2023rethinking}, and ShViT-S4~\cite{yun2024shvit}. 
+{\color{blue}
+These results suggest that the favorable accuracy--computation trade-off of WCANet is closely related to its decoupled feature-modeling strategy. LWSA performs frequency-aware spatial modeling by selectively exploiting complementary wavelet sub-bands, allowing informative spatial structures to be enhanced without uniformly increasing spatial computation. Meanwhile, ESE complements LWSA by emphasizing informative feature channels. The combination of these two mechanisms therefore improves spatial and channel-wise representation quality under limited computational budgets, which is consistent with the performance gains observed across different WCANet scales.
+}
 
 
 
@@ -884,6 +889,10 @@ Table~\ref{tab:coco} compares WCANet with representative backbones from differen
 WCANet consistently achieves higher average precision (AP) than conventional CNN baselines under comparable model complexity.
 Specifically, WCANet-T8 outperforms the standard ResNet50~\cite{he2016deep} by +2.3 $AP^b$ with RetinaNet, and by +2.0 $AP^b$ and +2.3 $AP^m$ with Mask R-CNN.
 Moreover, WCANet-T8 shows competitive performance against the efficient CNN architecture FasterNet-S~\cite{chen2023run}, achieving +0.1 higher $AP^b$ (40.0 vs.39.9) but slightly lower $AP^m$ (36.7 vs.36.9) under Mask R-CNN.
+
+{\color{blue}
+These results indicate that the representation learned by WCANet transfers effectively from image classification to dense prediction tasks rather than being specialized to global classification. The consistent improvements over ResNet50 in both object detection and instance segmentation are consistent with the frequency-aware spatial modeling of LWSA, which enhances informative spatial structures required for object localization and mask prediction. This interpretation is further supported by the filter ablation in Table~\ref{tab:coco_filter_ablation}, where replacing the learnable filters with fixed Haar filters reduces the overall AP by 0.8 percentage points and $AP_S$ by 1.2 percentage points.
+}
 
 
 { \color{green}
@@ -1645,20 +1654,28 @@ Tab.\ref{tab:achitecture} presents the architectural details of the three-stage 
 
 { 
 \textbf{Limitation.}
-{ \color{blue}
+{\color{blue}
 Although WCANet achieves a favorable speed--accuracy trade-off across GPU,
 CPU, and ARM-based platforms, deployment on dedicated mobile and embedded
 accelerators remains to be further investigated. In addition, the current
 stage-dependent kernel-size schedule ($k=7,5,3$) is fixed and may not optimally
 adapt to the spatial-frequency characteristics of every visual task.
 The current ClinicDB experiments provide initial evidence of the cross-domain
-adaptability of WCANet in medical image segmentation. Further evaluation on
-additional medical-image datasets will be considered in future work to assess
-its broader generalizability.
+adaptability of WCANet in medical image segmentation. However, the current
+medical-image evaluation is limited to a single dataset and task. Recent work
+has also explored deep learning for other medical imaging scenarios~\cite{bhuvaneshwari2025deep}.
+Therefore, further evaluation on additional medical-image datasets and tasks
+is needed to assess the broader generalizability of WCANet.
 }
 
 \textbf{Future Work.} We will validate the model's efficiency on edge devices and publish the results on GitHub. To further bridge the performance gap in downstream tasks, we will explore architectural fusion strategies that integrate WCANet with other paradigms without increasing the computational burden. Furthermore, we intend to investigate dynamic, multi-perspective feature learning strategies, drawing inspiration from recent advancements such as HMPFormer~\cite{usman2025hmpformer}, to enhance the model's architectural flexibility and generalization capability.
-
+{\color{blue}
+Moreover, the current WCANet focuses primarily on visual information from a
+single imaging modality. Recent work has also explored multimodal learning for
+complex medical applications~\cite{nelson2026multimodal}. Extending WCANet toward
+multimodal representation learning therefore represents an interesting direction
+for future research.
+}
 }
 
 

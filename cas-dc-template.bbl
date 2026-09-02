@@ -354,6 +354,14 @@ Shahaf~E Finder, Roy Amoyal, Eran Treister, and Oren Freifeld.
 \newblock In {\em European Conference on Computer Vision}, pages 363--380.
   Springer, 2024.
 
+\bibitem{pillai2025wavelet}
+Binu~Sudhakaran Pillai, Raghavendra Kulkarni, Venkata Satya~Suresh kumar
+  Kondeti, and Surendran Rajendran.
+\newblock Wavelet transform-based bayesian inference learning with conditional
+  variational autoencoder for mitigating injection attack in 6g edge network.
+\newblock {\em Computer Modeling in Engineering \& Sciences},
+  145(1):1141--1166, 2025.
+
 \bibitem{ren2016faster}
 Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
 \newblock Faster r-cnn: Towards real-time object detection with region proposal
@@ -504,11 +512,27 @@ Swathi Ganesan, Nalinda Somasiri, et~al.
 \newblock {\em Journal of Computational and Cognitive Engineering}, 4(1):8--23,
   2024.
 
+\bibitem{bhuvaneshwari2025deep}
+S~Bhuvaneshwari, V~Jananee, Sundara~Rajulu Navaneethakrishnan, R~Surendran, and
+  Kalyani Gedela.
+\newblock Deep learning-based approach for improved brain tumor identification
+  in ct images using sophisticated neural network models.
+\newblock In {\em 2025 5th International Conference on Advancement in
+  Electronics \& Communication Engineering (AECE)}, pages 1128--1133. IEEE,
+  2025.
+
 \bibitem{usman2025hmpformer}
 Muhammad~Talha Usman, Habib Khan, Haseeb Khan, Imad Rida, Xianxun Zhu, and
   JaKeoung Koo.
 \newblock Hmpformer: Hierarchical vision transformer with multi-perspective
   feature learning for precise polyp segmentation.
 \newblock {\em Image and Vision Computing}, page 105777, 2025.
+
+\bibitem{nelson2026multimodal}
+Madhusundar Nelson, Youseef Alotaibi, Surendran Rajendran, and Betshrine~Rachel
+  Jibinsingh.
+\newblock Multimodal learning for neonatal sepsis detection in the nicu using
+  brain-inspired graph neural networks.
+\newblock {\em Results in Engineering}, page 109072, 2026.
 
 \end{thebibliography}
