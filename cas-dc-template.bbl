@@ -170,18 +170,6 @@ Xiangyu Zhang, Xinyu Zhou, Mengxiao Lin, and Jian Sun.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 6848--6856, 2018.
 
-\bibitem{han2020ghostnet}
-Kai Han, Yunhe Wang, Qi~Tian, Jianyuan Guo, Chunjing Xu, and Chang Xu.
-\newblock Ghostnet: More features from cheap operations.
-\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
-  pattern recognition}, pages 1580--1589, 2020.
-
-\bibitem{tang2022ghostnetv2}
-Yehui Tang, Kai Han, Jianyuan Guo, Chang Xu, Chao Xu, and Yunhe Wang.
-\newblock Ghostnetv2: Enhance cheap operation with long-range attention.
-\newblock {\em Advances in Neural Information Processing Systems},
-  35:9969--9982, 2022.
-
 \bibitem{chen2023run}
 Jierun Chen, Shiu-hong Kao, Hao He, Weipeng Zhuo, Song Wen, Chul-Ho Lee, and
   S-H~Gary Chan.
@@ -318,6 +306,12 @@ Fran{\c{c}}ois Chollet.
 \newblock Xception: Deep learning with depthwise separable convolutions.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 1251--1258, 2017.
+
+\bibitem{han2020ghostnet}
+Kai Han, Yunhe Wang, Qi~Tian, Jianyuan Guo, Chunjing Xu, and Chang Xu.
+\newblock Ghostnet: More features from cheap operations.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 1580--1589, 2020.
 
 \bibitem{duan2017sar}
 Yiping Duan, Fang Liu, Licheng Jiao, Peng Zhao, and Lu~Zhang.
