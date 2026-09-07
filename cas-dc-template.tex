@@ -38,6 +38,7 @@
 % \definecolor{blue}{RGB}{0, 100, 0}
 % \definecolor{blue}{RGB}{220, 20, 60}
 % \definecolor{blue}{RGB}{128, 0, 128}
+\definecolor{green}{RGB}{0,0,255}
 
 
 
@@ -99,7 +100,7 @@
 
 
 \author[1]{Huitao Li}
-
+\fnmark[1]
 
 
 \author[2]{Wenhan Chao}
@@ -123,12 +124,12 @@ orcid=0000-0001-8028-5285
 \author[1]{Xinxin Yang}
 
 
-
+\fntext[fn1]{These authors contributed equally to this work.}
 \cortext[cor1]{Corresponding author}
 
 % Here goes the abstract
 \begin{abstract}
-To design efficient neural networks, many studies focus on reducing redundancy. However, such feature discarding is often random and may remove useful information, which leads to degraded network performance. To address the challenge of insufficient feature extraction under limited computational budgets, we decouple feature modeling into channel-wise and spatial dimensions, which substantially reduces computational overhead. To enable efficient spatial modeling, we propose Learnable Wavelet Spatial Attention (LWSA), which leverages the wavelet transform to decompose the feature map into multiple subbands of varying informativeness and performs spatial attention selectively on the most informative components, enabling effective feature extraction at low computational cost. By cascading the ESE module and LWSA, we propose a Cascaded Channel--Spatial Attention mechanism for feature extraction. Building upon this, we further introduce WCANet, a lightweight architecture that achieves effective feature modeling under low computational budgets across a variety of vision tasks. For example, on ImageNet-1K, WCANet-T5 achieves approximately 42\% higher throughput than FasterNet-T1 at comparable accuracy on GPU. WCANet-T4 also achieves 2.9$\times$ the throughput of StarNet-S1 with 1.4 percentage points higher Top-1 accuracy, and surpasses MobileMamba-T2 by 1.3 percentage points.
+To design efficient neural networks, many studies focus on reducing redundancy. However, such feature discarding is often random and may remove useful information, which leads to degraded network performance. To address the challenge of insufficient feature extraction under limited computational budgets, we decouple feature modeling into channel-wise and spatial dimensions, which substantially reduces computational overhead. To enable efficient spatial modeling, we propose Learnable Wavelet Spatial Attention (LWSA), which leverages the wavelet transform to decompose the feature map into multiple {\color{blue}sub-bands} of varying informativeness and performs spatial attention selectively on the most informative components, enabling effective feature extraction at low computational cost. By cascading the ESE module and LWSA, we propose a Cascade Channel--Spatial Attention mechanism for feature extraction. Building upon this, we further introduce WCANet, a lightweight architecture that achieves effective feature modeling under low computational budgets across a variety of vision tasks. For example, on ImageNet-1K, WCANet-T5 achieves approximately 42\% higher throughput than FasterNet-T1 at comparable accuracy on GPU. WCANet-T4 also achieves 2.9$\times$ the throughput of StarNet-S1 with 1.4 percentage points higher Top-1 accuracy, and surpasses MobileMamba-T2 by 1.3 percentage points.
 \end{abstract}
 
 % Use if a graphical abstract is present
@@ -141,23 +142,25 @@ To design efficient neural networks, many studies focus on reducing redundancy. 
 \includegraphics[width=1\linewidth]{WCANet.pdf}
 
 
-To design efficient neural networks, many studies focus on reducing redundancy. However, such feature discarding is often random and may remove useful information, which leads to degraded network performance. To address the challenge of insufficient feature extraction under limited computational budgets, we decouple feature modeling into channel-wise and spatial dimensions, which substantially reduces computational overhead. To enable efficient spatial modeling, we propose Learnable Wavelet Spatial Attention (LWSA), which leverages the wavelet transform to decompose the feature map into multiple subbands of varying informativeness and performs spatial attention selectively on the most informative components, enabling effective feature extraction at low computational cost. By cascading the ESE module and LWSA, we propose a Cascaded Channel--Spatial Attention mechanism for feature extraction. Building upon this, we further introduce WCANet, a lightweight architecture that achieves effective feature modeling under low computational budgets across a variety of vision tasks. 
+To design efficient neural networks, many studies focus on reducing redundancy. However, such feature discarding is often random and may remove useful information, which leads to degraded network performance. To address the challenge of insufficient feature extraction under limited computational budgets, we decouple feature modeling into channel-wise and spatial dimensions, which substantially reduces computational overhead. To enable efficient spatial modeling, we propose Learnable Wavelet Spatial Attention (LWSA), which leverages the wavelet transform to decompose the feature map into multiple {\color{blue}sub-bands} of varying informativeness and performs spatial attention selectively on the most informative components, enabling effective feature extraction at low computational cost. By cascading the ESE module and LWSA, we propose a Cascade Channel--Spatial Attention mechanism for feature extraction. Building upon this, we further introduce WCANet, a lightweight architecture that achieves effective feature modeling under low computational budgets across a variety of vision tasks. 
 { \color{green}For example, on ImageNet-1K, WCANet-T5 achieves approximately 42\% higher throughput than FasterNet-T1 at comparable accuracy on GPU. WCANet-T4 also achieves 2.9$\times$ the throughput of StarNet-S1 with 1.4 percentage points higher Top-1 accuracy, and surpasses MobileMamba-T2 by 1.3 percentage points.}
 
 \end{graphicalabstract}
 
 % Research highlights
 \begin{highlights}
-{
- \item {To overcome the limitation that fixed wavelet filters cannot effectively decompose high-dimensional feature maps, we propose learnable wavelet filters with orthogonality constraints, allowing filters to adapt dynamically while strictly maintaining orthogonality.}
-  
-  \item {We propose a learnable wavelet spatial attention mechanism (LWSA). LWSA leverages the features from sub-bands with different orientations to perform spatial attention on informative sub-bands, thereby enhancing key spatial nodes and achieving efficient spatial feature modeling.}
 
-  \item {We propose Cascade Channel–Spatial Attention (CCSA). CCSA utilizes ESE and LWSA to perceive key features at both channel and spatial levels, respectively, achieving an optimized accuracy-efficiency trade-off.}
+{\color{blue}
 
- \item {We propose WCANet, a visual network design optimized for practical lightweight applications. Extensive experiments demonstrate that WCANet exhibits robust scalability and highly competitive performance across various devices.}
+\item To improve the adaptability of wavelet decomposition to learned high-dimensional feature representations, we propose learnable wavelet filters with orthogonality constraints, allowing the filters to adapt during optimization while maintaining an orthogonal wavelet basis.
 
- }
+\item We propose Learnable Wavelet Spatial Attention (LWSA), which exploits the complementary directional information of the LH and HL sub-bands to generate spatial attention for the LL sub-band, thereby enhancing informative spatial regions and enabling efficient frequency-aware spatial modeling.
+
+\item We propose Cascade Channel--Spatial Attention (CCSA), which combines ESE and LWSA to model informative features along the channel and spatial dimensions, respectively, providing a favorable accuracy--efficiency trade-off.
+
+\item Building on CCSA, we develop WCANet, a lightweight visual architecture for resource-constrained scenarios. Extensive experiments across different model scales, vision tasks, and hardware platforms demonstrate its competitive accuracy--efficiency trade-off and practical scalability.
+
+}
 \end{highlights}
 
 % Keywords
@@ -364,25 +367,86 @@ Recent lightweight architectures improve efficiency mainly by reducing the amoun
 \label{sec:intro}
 
 
+% \subsection{Revisiting Convolutions}
+
+
+% The process of the standard convolution operation is as follows:
+% given the input feature map $ X\in\mathbb{R}^{C\times H\times W} $ and the Standard Kernel $K\in\mathbb{R}^{ C_{out} \times C_{in}\times H\times W}$, the output feature map  $Y\in\mathbb{R}^{C_{out}\times H\times W}$ is:
+% \begin{equation}
+%    \centering 
+%     Y = X * K ,
+% \end{equation}
+% Specifically, $y_{[c',i,j]}$ is an element in the location $(i,j)$ at channel $c'$ of $Y$. The value of $y_{[c',i,j]}$ is calculated by:
+% \begin{equation}
+%    \centering 
+%         y_{\left\lbrack c^{\prime},i,j\right\rbrack}=\sum\limits_{c=1}^{C_{_{}in}}\sum\limits_{m=1}^{K}\sum\limits_{n=1}^{K}x_{\left\lbrack c,i+m,j+n\right\rbrack} \cdot k_{\left\lbrack c^{\prime},c,m,n\right\rbrack}
+%     \label{eq:onvolution}
+% \end{equation}
+% As shown in Eq.\ref{eq:onvolution}, standard convolution performs local spatial feature extraction and channel-wise information fusion in one step \cite{howard2017mobilenets}. Practice has proved that this way of feature extraction is effective \cite{ren2016faster,redmon2018yolov3}. However, its computation complexity is relatively high$\big(O(HWK^2 C_{in}C_{out})\big)$. This makes it difficult to satisfy the lightweight requirements.
+
+
+% The depthwise separable convolution splits the operation of Eq.\ref{eq:onvolution} into two layers: a depthwise convolution (DWConv) for filtering and a pointwise convolution (PWConv) layer for combining. The calculations for the two separate layers are respectively shown in Eq.\ref{eq:dwconv} and Eq.\ref{eq:pwconv}.\
+% \begin{equation}
+% \label{eq:dwconv}
+% \begin{gathered}
+%     \hat{x}_{c,i,j} = \sum\limits_{m=1}^{K}\sum\limits_{n=1}^{K}x_{c,i+m,j+n}\cdot d_{c,m,n}
+% \end{gathered}
+% \end{equation}
+% \begin{equation}
+% \label{eq:pwconv}
+% \begin{gathered}
+%     Y = \hat{X}*Conv_{1\times1}.
+% \end{gathered}
+% \end{equation}
+% This decomposition drastically reduces the computation from $ (O(HWK^2C_{in}C_{out})$ to $O(HWK^2C_{in}+O(HWC_{in}C_{out})))$.
+
+% Partial convolution (Pconv) is proposed to reduce computational redundancy and memory access simultaneously. It simply applies a regular Conv on only a part of the
+% input channels for spatial feature extraction, and leaves the
+% remaining channels untouched. 
+ 
+% \begin{equation}
+% \begin{gathered}
+%     Y = [X_{1:r}*K_{1:r},X_{r+1:C_{in}}].
+% \end{gathered}
+% \end{equation}
+% The computation complexity of PConv is $O(HWK^2 C_{r \cdot in}C_{r \cdot out})$. Under the same FLOPs, PConv runs faster than DWConv \cite{chen2023run}.
+
+
+% % DWConv虽然大幅降低了计算量，但是其空间建模能力较弱。为了弥补性能损失，实践常常要大幅增加DWConv的通道数，这反而影响了网络的计算效率。PConv通过只对部分特征通道进行卷积操作提示了运行效率，然而剩余的通道存在大量潜在有用的信息没有被提取，这反而限制了模型的特征表达能力。
+
+% Although DWConv significantly reduces the computational load, its spatial modeling capability is relatively weak. To make up for the performance loss, in practice, the number of channels of DWConv often needs to be greatly increased, which instead affects the computational efficiency. PConv improves the operational efficiency by only performing convolution operations on a small portion of the feature channels. However, a large amount of potentially useful information in the remaining channels is not extracted, which instead limits the model's feature expression ability.
+
+% %为了实现真正强大且高效的特征建模能力under low 计算开销 
+% To achieve truly powerful and efficient feature modeling capabilities under low computational cost, we propose Cascade Channel-Spatial Attention (CCSA). CCSA enables the network to pay more attention to key features when modeling feature maps by cascading channel attention and spatial attention. CCSA reduces computational complexity by separately modeling space and channel. By cascading channel attention and spatial attention, the network pays more attention to key features when modeling feature maps.
+
+
+
+
 \subsection{Revisiting Convolutions}
 
 
 The process of the standard convolution operation is as follows:
-given the input feature map $ X\in\mathbb{R}^{C\times H\times W} $ and the Standard Kernel $K\in\mathbb{R}^{ C_{out} \times C_{in}\times H\times W}$, the output feature map  $Y\in\mathbb{R}^{C_{out}\times H\times W}$ is:
+given the input feature map 
+{\color{blue}$X\in\mathbb{R}^{C_{in}\times H\times W}$ and the convolution kernel $K\in\mathbb{R}^{C_{out}\times C_{in}\times K\times K}$},
+the output feature map $Y\in\mathbb{R}^{C_{out}\times H\times W}$ is:
 \begin{equation}
    \centering 
     Y = X * K ,
 \end{equation}
+
 Specifically, $y_{[c',i,j]}$ is an element in the location $(i,j)$ at channel $c'$ of $Y$. The value of $y_{[c',i,j]}$ is calculated by:
 \begin{equation}
    \centering 
         y_{\left\lbrack c^{\prime},i,j\right\rbrack}=\sum\limits_{c=1}^{C_{_{}in}}\sum\limits_{m=1}^{K}\sum\limits_{n=1}^{K}x_{\left\lbrack c,i+m,j+n\right\rbrack} \cdot k_{\left\lbrack c^{\prime},c,m,n\right\rbrack}
     \label{eq:onvolution}
 \end{equation}
-As shown in Eq.\ref{eq:onvolution}, standard convolution performs local spatial feature extraction and channel-wise information fusion in one step \cite{howard2017mobilenets}. Practice has proved that this way of feature extraction is effective \cite{ren2016faster,redmon2018yolov3}. However, its computation complexity is relatively high$\big(O(HWK^2 C_{in}C_{out})\big)$. This makes it difficult to satisfy the lightweight requirements.
+
+As shown in Eq.\ref{eq:onvolution}, standard convolution performs local spatial feature extraction and channel-wise information fusion in one step \cite{howard2017mobilenets}. 
+{\color{blue}This feature extraction strategy has been widely demonstrated to be effective~\cite{ren2016faster,redmon2018yolov3}.}
+{\color{blue}However, its computational complexity is relatively high $\big(O(HWK^2 C_{in}C_{out})\big)$, making it difficult to satisfy lightweight computational requirements.}
 
 
-The depthwise separable convolution splits the operation of Eq.\ref{eq:onvolution} into two layers: a depthwise convolution (DWConv) for filtering and a pointwise convolution (PWConv) layer for combining. The calculations for the two separate layers are respectively shown in Eq.\ref{eq:dwconv} and Eq.\ref{eq:pwconv}.\
+The depthwise separable convolution splits the operation of Eq.\ref{eq:onvolution} into two layers: a depthwise convolution (DWConv) for filtering and a pointwise convolution (PWConv) layer for combining. The calculations for the two separate layers are respectively shown in Eq.\ref{eq:dwconv} and Eq.\ref{eq:pwconv}.
 \begin{equation}
 \label{eq:dwconv}
 \begin{gathered}
@@ -395,9 +459,15 @@ The depthwise separable convolution splits the operation of Eq.\ref{eq:onvolutio
     Y = \hat{X}*Conv_{1\times1}.
 \end{gathered}
 \end{equation}
-This decomposition drastically reduces the computation from $ (O(HWK^2C_{in}C_{out})$ to $O(HWK^2C_{in}+O(HWC_{in}C_{out})))$.
 
-Partial convolution (Pconv) is proposed to reduce computational redundancy and memory access simultaneously. It simply applies a regular Conv on only a part of the
+{\color{blue}
+This decomposition drastically reduces the computational complexity from
+$O(HWK^2C_{in}C_{out})$ to
+$O(HWK^2C_{in}+HWC_{in}C_{out})$.
+}
+
+
+{\color{blue}Partial Convolution (PConv)} is proposed to reduce computational redundancy and memory access simultaneously. It simply applies a regular Conv on only a part of the
 input channels for spatial feature extraction, and leaves the
 remaining channels untouched. 
  
@@ -406,31 +476,31 @@ remaining channels untouched.
     Y = [X_{1:r}*K_{1:r},X_{r+1:C_{in}}].
 \end{gathered}
 \end{equation}
-The computation complexity of PConv is $O(HWK^2 C_{r \cdot in}C_{r \cdot out})$. Under the same FLOPs, PConv runs faster than DWConv \cite{chen2023run}.
+
+{\color{blue}PConv has a complexity of $O(HWK^2C_{r\cdot in}C_{r\cdot out})$.}
+Under the same FLOPs, PConv runs faster than DWConv~\cite{chen2023run}.
 
 
 % DWConv虽然大幅降低了计算量，但是其空间建模能力较弱。为了弥补性能损失，实践常常要大幅增加DWConv的通道数，这反而影响了网络的计算效率。PConv通过只对部分特征通道进行卷积操作提示了运行效率，然而剩余的通道存在大量潜在有用的信息没有被提取，这反而限制了模型的特征表达能力。
 
 Although DWConv significantly reduces the computational load, its spatial modeling capability is relatively weak. To make up for the performance loss, in practice, the number of channels of DWConv often needs to be greatly increased, which instead affects the computational efficiency. PConv improves the operational efficiency by only performing convolution operations on a small portion of the feature channels. However, a large amount of potentially useful information in the remaining channels is not extracted, which instead limits the model's feature expression ability.
 
+
 %为了实现真正强大且高效的特征建模能力under low 计算开销 
+
 To achieve truly powerful and efficient feature modeling capabilities under low computational cost, we propose Cascade Channel-Spatial Attention (CCSA). CCSA enables the network to pay more attention to key features when modeling feature maps by cascading channel attention and spatial attention. CCSA reduces computational complexity by separately modeling space and channel. By cascading channel attention and spatial attention, the network pays more attention to key features when modeling feature maps.
-
-
-
-
-
-
-
 
 
 
 \begin{figure}[pos=h]
     \centering
     \includegraphics[width=1.\linewidth]{stages.pdf}
-    \caption{Feature map evolution across network stages. Visualization of feature maps at different stages (Stage 0 to Stage 3).}
+    \caption{{\color{blue}Feature map evolution from Stage 0 to Stage 3 of WCANet, illustrating the progressive transformation of feature representations across network depth.}}
     \label{fig:stages}
 \end{figure}
+
+
+
 
 
 
@@ -448,15 +518,15 @@ To improve the modeling ability of key spatial features, we take advantage of th
 
 
 % 先前的研究 \cite{finder2024wavelet,xue2023smalltrack,he2025mobilemamba} 在进行小波变换时通常依赖于预定义的固定滤波器，例如 Haar 小波 \cite{finder2022wavelet,gal2021swagan,huang2017wavelet}。经过小波变换后，输入特征图被转换为包含不同信息的四个子带。接下来，现有方法通常将这些子带沿通道维度进行拼接，然后进行特征提取 \cite{finder2024wavelet，he2025mobilemamba， ding2024wavelet}。然而，这种方法存在两个问题。首先，高层特征图包含丰富的语义信息，如图 \ref{fig：stages} 顶部所示。固定滤波器无法有效分离高层特征图的信息。其次，如图 \ref{fig：wt} 所示，小波变换后的子带包含不同方向的信息。沿通道维度简单拼接会混淆不同子带的语义。为了解决这些问题，我们创新性地提出了可学习的小波空间注意力（LWSA）。它由以下两个部分组成。
-Previous studies \cite{finder2024wavelet,xue2023smalltrack,he2025mobilemamba} often relied on predefined fixed filters when conducting wavelet transforms, such as Haar Wavelet \cite{finder2022wavelet,gal2021swagan,huang2017wavelet}. After wavelet transformation, the input feature map is transformed into four sub-bands containing different information. Next, existing methods, {such as WTConv~\cite{finder2024wavelet}, often extract features from all sub-bands by directly applying standard convolution operations.}However, this paradigm introduces two major limitations. First, high-level feature maps contain rich semantic information, as shown in Fig.\ref{fig:stages}. Fixed filters cannot effectively separate the information of high-level feature maps. Second, existing convolution-based feature extraction methods cannot achieve a powerful spatial feature modeling capability. To solve these problems, we innovatively propose learnable wavelet spatial attention (LWSA). It consists of the following two components.
+Previous studies \cite{finder2024wavelet,xue2023smalltrack,he2025mobilemamba} often relied on predefined fixed filters when conducting wavelet transforms, such as {\color{blue}Haar wavelet filters} \cite{finder2022wavelet,gal2021swagan,huang2017wavelet}. After wavelet transformation, the input feature map is transformed into four sub-bands containing different information. Next, existing methods, {such as WTConv~\cite{finder2024wavelet}, often extract features from all sub-bands by directly applying standard convolution operations.} However, this paradigm introduces two major limitations. First, high-level feature maps contain rich semantic information, as shown in Fig.\ref{fig:stages}. Fixed filters cannot effectively separate the information of high-level feature maps. Second, existing convolution-based feature extraction methods cannot achieve a powerful spatial feature modeling capability. To solve these problems, we propose learnable wavelet spatial attention (LWSA). It consists of the following two components.
 
 To overcome the first problem, we propose the Learnable Wavelet Basis. 
 Furthermore, we construct \textbf{Learnable Wavelet Filters (LWF)} to replace the fixed filters.
 This not only satisfies orthogonality but also enhances the filter's adaptability.
 Given an input feature map $X \in \mathbb{R}^{C \times H \times W}$,
-network generate a two-dimensional wavelet filters group $F \in \mathbb{R}^{4 \times 2 \times 2}$ for each channel slice $x \in \mathbb{R}^{1 \times H \times W}$.
-Specifically, we first initialize $c$ one-dimensional learnable low-pass filters $g_{lo} \in \mathbb{R}^2 $.
-The corresponding $c$ high-pass filters $g_{hi}$ are explicitly constructed according to the orthogonality condition:
+network {\color{blue}generates} a two-dimensional wavelet {\color{blue}filter} group $F \in \mathbb{R}^{4 \times 2 \times 2}$ for each channel slice $x \in \mathbb{R}^{1 \times H \times W}$.
+Specifically, we first initialize $C$ one-dimensional learnable low-pass filters $g_{lo} \in \mathbb{R}^2 $.
+The corresponding $C$ high-pass filters $g_{hi}$ are explicitly constructed according to the orthogonality condition:
 \begin{equation}
 \label{con:1d_filter}
 \begin{aligned}
@@ -480,28 +550,28 @@ Building upon this, we construct a two-dimensional analysis filter group $F$ thr
 % \end{split}
 \end{equation}
 To efficiently implement multi-channel wavelet decomposition, 
-we integrate the $c$ two-dimensional filter groups into a single depthwise separable convolution kernel $W^{DW} \in \mathbb{R}^{4c \times 1 \times 2 \times 2}$.
-During the backward pass, $g_{lo}$ is updated by gradient descent. Meanwhile, $g_{hi}$ and $W^{DW}$ are dynamically generated from $g_{lo}$ through orthogonality constraints and tensor operations {, which avoids the gradient instability and divergence issues caused by non-orthogonality.} {A similar hard-constraint design is also reflected in other domains to ensure optimization stability and theoretical validity~\cite{jung2025vulnerability}.}
+we integrate the $C$ two-dimensional filter groups into a single depthwise separable convolution kernel $W^{DW} \in \mathbb{R}^{4{\color{blue}C} \times 1 \times 2 \times 2}$.
+During the backward pass, $g_{lo}$ is updated by gradient descent. Meanwhile, $g_{hi}$ and $W^{DW}$ are dynamically generated from $g_{lo}$ through orthogonality constraints and tensor operations{, which avoids the gradient instability and divergence issues caused by non-orthogonality.} {A similar hard-constraint design is also reflected in other domains to ensure optimization stability and theoretical validity~\cite{jung2025vulnerability}.}
 
 \begin{figure} [pos=h]
     \centering
     \includegraphics[width=1.\linewidth]{Wavelet_Transform.pdf}
-    \caption{The process of Wavelet Transform.}
+    \caption{  \color{blue}  Illustration of the learnable wavelet transform in LWSA. The input feature map is decomposed into four sub-bands (LL, LH, HL, and HH) using learnable wavelet filters with orthogonality constraints.}
     \label{fig:wt}
 \end{figure}
-To fix the second problem, we propose \textbf{Wavelet Spatial Attention} to replace sample concatenation and convolutions. As shown in Fig.\ref{fig:wt}, the LL sub-band retains the most details of the input feature map. The LH sub-band and HL sub-band highlight the vertical and horizontal information, respectively. Therefore, we enhance the information of the LL sub-band by utilizing the information of the LH and HL sub-bands. Fig.\ref{fig:WCANet} (c) shows the specific operation. We first perform local convolutional feature extraction on HL and LH by leveraging DWConv, and then perform the Hadamard product \footnote{Here, the symbol $\odot$ strictly denotes element-wise multiplication.} on the two obtained feature maps. Finally, the HardSigmoid activation function is used to generate the spatial attention matrix $A$.
+To {\color{blue}address} the second problem, we propose \textbf{Wavelet Spatial Attention} to replace {\color{blue}simple} concatenation and convolutions. As shown in Fig.\ref{fig:wt}, the LL sub-band {\color{blue}retains the dominant low-frequency information} of the input feature map. The LH sub-band and HL sub-band highlight the vertical and horizontal information, respectively. Therefore, we enhance the information of the LL sub-band by utilizing the information of the LH and HL sub-bands. Fig.~\ref{fig:WCANet}(d) shows the detailed structure of LWSA. We first perform local convolutional feature extraction on HL and LH by leveraging DWConv, and then perform the Hadamard product \footnote{Here, the symbol $\odot$ strictly denotes element-wise multiplication.} on the two obtained feature maps. Finally, the HardSigmoid activation function is used to generate the spatial attention matrix $A$.
 \begin{equation}
 \begin{gathered}
     \tilde{\text{LH}} = \text{DWConv}_{3\times3}(\text{LH})\\
     \quad \tilde{\text{HL}} = \text{DWConv}_{3\times3}(\text{HL}) \\
-    A = \text{Hardsigmoid}\left( \tilde{\text{LH}} \odot \tilde{\text{HL}} \right)
+    A = \text{HardSigmoid}\left( \tilde{\text{LH}} \odot \tilde{\text{HL}} \right)
 \end{gathered}
 \end{equation}
-where the shape of $A \in \mathbb{R}^{B \times C \times H/2 \times W/2} $ is the same as that of the LL sub-band. Thus, spatial attention is achieved through the operation as shown in the formula X:
+where the shape of $A \in \mathbb{R}^{B \times C \times H/2 \times W/2} $ is the same as that of the LL sub-band. Thus, spatial attention is achieved through the operation as shown in the {\color{blue}following equation}:
 \begin{equation}
 \tilde{\text{LL}}_{\text{attn}} = A \odot \text{DWConv}_{k\times k}(\text{LL}) + \text{LL},
 \end{equation}
-where k represents the size of the convolution kernel. Its value can be dynamically set according to the stage of the network $\big(Stage 0:(k=7), Stage 1:(k=5), Stage \geq2:(k=3)\big)$.
+where {\color{blue}$k$} represents the size of the convolution kernel. Its value {\color{blue}is set} according to the stage of the network $\big(Stage 0:(k=7), Stage 1:(k=5), Stage \geq2:(k=3)\big)$.
 \begin{equation}
 IWT(\tilde{\text{LL}}_{\text{attn}},\tilde{\text{LH}},\tilde{\text{HL}},HH)=X^\text{out}
 \end{equation}
@@ -519,25 +589,27 @@ We concatenate $\tilde{\text{LL}}_{\text{attn}}$,$\tilde{\text{LH}}$,$\tilde{\te
 
 
 
- We present the lightweight model design, i.e., WCANet, as shown in Fig.\ref{fig:WCANet}. It uses a sequence attention as the primary operation. We present
-the basic block, i.e., CCSA block in Fig.\ref{fig:WCANet} (b).
+ We present the lightweight model design, i.e., WCANet, as shown in Fig.\ref{fig:WCANet}. It uses {\color{blue}CCSA blocks} as the primary operation. 
+The detailed structure of the CCSA block is illustrated in Fig.~\ref{fig:WCANet}(c).
 
 
 
 \begin{figure*} [pos=t]
     \centering
     \includegraphics[width=0.9\linewidth]{WCANet.pdf}
-    \caption{The structure of WCANet. (a) is the StepStem. (b) is the CCSA Block. (c) is the LWSA.}
+    \caption{Overall architecture of WCANet and its main components. 
+(a) StepStem; (b) downsampling block; (c) CCSA block; and 
+(d) Learnable Wavelet Spatial Attention (LWSA).}
     \label{fig:WCANet}
 \end{figure*}
 
 
-CCSA block applies attention operations separately along the channel and spatial dimensions, which achieves a powerful feature extraction capability. In the channel dimension, the ESE module is employed to suppress redundant channels and enhance effective channels. In the spatial dimension, we employ LWSA to achieve effective spatial feature extraction. Besides, we utilize the extra depthwise convolution and FFN to enhance the model's capability.
+{\color{blue}The} CCSA block applies attention operations separately along the channel and spatial dimensions, which achieves a powerful feature extraction capability. In the channel dimension, the ESE module is employed to suppress redundant channels and enhance effective channels. In the spatial dimension, we employ LWSA to achieve effective spatial feature extraction. Besides, we utilize the extra depthwise convolution and FFN to enhance the model's capability.
 
 
 
 \begin{table} [pos=h]
-  \caption{Comparison of WCANet architectures with different total downsampling ratios: WCANet-T4×32 and WCANet-T5x32 denote 4-stage networks with a total downsampling factor of 32, while WCANet-T4×64 and WCANet-T5×64 denote 3-stage networks with a total downsampling factor of 64.}
+  \caption{Comparison of WCANet architectures with different total downsampling ratios. WCANet-T4$\times32$ and WCANet-T5$\times32$ denote four-stage networks with a total downsampling factor of $\times32$, whereas WCANet-T4$\times64$ and WCANet-T5$\times64$ denote three-stage networks with a total downsampling factor of $\times64$.}
   \label{tab:compare_64_32}
   \centering
   \begin{tabular}{lccc}
@@ -554,7 +626,7 @@ CCSA block applies attention operations separately along the channel and spatial
 \end{table}
 
 We compare the $\times32$ and $\times64$ downsampling multi-stage architectures. 
-As shown in Tab \ref{tab:compare_64_32}, under different network architectures, $\times64$ downsampling is more efficient than $\times32$ downsampling. Furthermore, the experimental results show that WCANet-T4×64 achieves a Top-1 accuracy $0.8\uparrow$ than its $\times32$ counterpart, and WCANet-T5×64 matches the Top-1 accuracy of the $\times32$ version. Therefore, we utilize the 64× downsampling in WCANet. 
+As shown in Table~\ref{tab:compare_64_32}, under different network architectures, $\times64$ downsampling is more efficient than $\times32$ downsampling. Furthermore, the experimental results show that WCANet-T4$\times64$ improves Top-1 accuracy by 0.8 percentage points over its $\times32$ counterpart, and WCANet-T5×64 matches the Top-1 accuracy of the $\times32$ version. Therefore, we adopt the $\times64$ downsampling design in WCANet.
 
 Overall, WCANet employs a StepStem \cite{xiao2021early} to project the input image into the visual feature map. For
 downsampling, we leverage the depth-wise and point-wise
@@ -827,7 +899,7 @@ Throughput is reported as mean $\pm$ standard deviation over five repeated runs.
 \begin{figure*}[pos=t] 
     \centering
     \includegraphics[width=0.95\linewidth]{visualization.pdf}
-    \caption{{Qualitative results for object detection and instance segmentation on COCO-2017 using WCANet as the backbone framework.}}
+    \caption{Qualitative object detection and instance segmentation results on COCO-2017 using WCANet as the backbone. The examples illustrate the localization and segmentation performance of WCANet across objects with different scales and visual characteristics.}
     \label{fig:COCO_vis}
 \end{figure*}
 
@@ -952,7 +1024,7 @@ These results indicate that the representation learned by WCANet transfers effec
 
 \midrule
 
-MK\_UNet
+MK-UNet
 & 89.91 $\pm$ 0.63
 & 83.46 $\pm$ 0.93
 & 93.59 $\pm$ 0.98
@@ -1021,7 +1093,7 @@ mean $\pm$ standard deviation across the five independent data splits.
 }
 
 { \color{green}
-  As shown in Table~\ref{tab:clinicdb_domain_adaptation}, MK\_UNet~\cite{rahman2025mk} achieves $93.59 \pm 0.98$\% Test Dice and $88.46 \pm 1.43$\% Test IoU. Introducing fixed Haar filters into WCANet yields $93.75 \pm 0.67$\% Test Dice and $88.77 \pm 0.72$\% Test IoU. In contrast, WCANet equipped with our proposed learnable wavelet filters achieves the best average performance, reaching $94.28 \pm 0.60$\% Test Dice and $89.26 \pm 0.75$\% Test IoU. Compared with the fixed-Haar variant, the learnable filters improve the average Test Dice and Test IoU by 0.53 and 0.49 percentage points, respectively. Meanwhile, the standard deviations of the learnable-filter variant remain comparable to those of the fixed-Haar counterpart across different data partitions, indicating that the observed performance improvement is robust to variations in the dataset split rather than being specific to a single partition.
+  As shown in Table~\ref{tab:clinicdb_domain_adaptation}, MK-UNet~\cite{rahman2025mk} achieves $93.59 \pm 0.98$\% Test Dice and $88.46 \pm 1.43$\% Test IoU. Introducing fixed Haar filters into WCANet yields $93.75 \pm 0.67$\% Test Dice and $88.77 \pm 0.72$\% Test IoU. In contrast, WCANet equipped with our proposed learnable wavelet filters achieves the best average performance, reaching $94.28 \pm 0.60$\% Test Dice and $89.26 \pm 0.75$\% Test IoU. Compared with the fixed-Haar variant, the learnable filters improve the average Test Dice and Test IoU by 0.53 and 0.49 percentage points, respectively. Meanwhile, the standard deviations of the learnable-filter variant remain comparable to those of the fixed-Haar counterpart across different data partitions, indicating that the observed performance improvement is robust to variations in the dataset split rather than being specific to a single partition.
 }
 
 { \color{green}
@@ -1029,8 +1101,14 @@ mean $\pm$ standard deviation across the five independent data splits.
 }
 
 {\color{green}
-To intuitively analyze the effectiveness of our proposed WCANet in spatial feature extraction, we visualize the intermediate feature responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters in the first row of Fig.~\ref{fig:feature_vis}, together with representative segmentation results in the subsequent rows. Compared with MK-UNet, the wavelet-based variants suppress more irrelevant background responses, while the learnable-filter variant further produces a more compact and target-focused activation pattern. This observation suggests that adaptive frequency decomposition can better preserve task-relevant information and suppress less informative responses, which is consistent with the general feature-engineering principle of improving the discriminative quality of learned representations~\cite{ravishankar2025survey}.
+To intuitively analyze the effectiveness of our proposed WCANet in spatial feature extraction, we visualize the intermediate feature responses of MK-UNet, WCANet with fixed Haar filters, and WCANet with learnable filters in the first row of Fig.~\ref{fig:feature_vis}, together with representative segmentation results in the subsequent rows. Compared with MK-UNet, the wavelet-based variants suppress more irrelevant background responses, while the learnable-filter variant further produces a more compact and target-focused activation pattern. 
+This observation suggests that learnable wavelet decomposition can better preserve task-relevant information and suppress less informative responses, which is consistent with the general feature-engineering principle of improving the discriminative quality of learned representations~\cite{ravishankar2025survey}.
 The segmentation examples further show that WCANet with learnable filters generally produces cleaner target regions and more accurate localization than the baseline and fixed-filter variants, supporting the effectiveness of the proposed Learnable Wavelet Spatial Attention for spatial feature modeling. 
+}
+
+{\color{green}
+Overall, as shown in Fig.~\ref{fig:feature_vis} and Table~\ref{tab:clinicdb_domain_adaptation}, although a small number of samples remain challenging, WCANet with learnable wavelet decomposition demonstrates consistently better overall segmentation performance and more discriminative spatial feature representations.
+
 }
 
 % {\color{red}
@@ -1185,7 +1263,7 @@ Taken together, these results show that the performance gains from learnable wav
 % \end{tabular}
 % \end{table}
 
-% \textbf{Analysis of Wavelet Spatial Attention.} To verify the rationality of the Wavelet Spatial Attention (WSA) design proposed in LWSA, we compare LWSA with other feature extraction methods. We design three approaches: the first one directly applies an identity transformation to the LL, LH, and HL sub-bands; the second one performs 7x7 depthwise convolution on each of the three sub-bands; and the third one is our proposed WSA. As shown in Tab. \ref{tab:ablation_lwsa_attention}, LWSA achieved a top-1 accuracy of up to 80.6\% while having fewer FLOPs than \chadded{\color{red}both} the 7x7 depthwise convolution \chadded{ \color{red} and the LS Conv} method. To verify whether the HH sub-band is beneficial to model performance, we conducted experiments by convolving all sub-bands and only convolving the LL, HL, and LH sub-bands. As shown in Tab.\ref{tab:HH_method}, the result indicates that neglecting to perform convolution on the HH sub-band leads to lower FLOPs without significant changes in top-1 accuracy, validating the effectiveness of the feature separation method proposed in LWSA.
+% \textbf{Analysis of Wavelet Spatial Attention.} To verify the rationality of the Wavelet Spatial Attention (WSA) design proposed in LWSA, we compare LWSA with other feature extraction methods. We design three approaches: the first one directly applies an identity transformation to the LL, LH, and HL sub-bands; the second one performs 7x7 depthwise convolution on each of the three sub-bands; and the third one is our proposed WSA. As shown in Table \ref{tab:ablation_lwsa_attention}, LWSA achieved a top-1 accuracy of up to 80.6\% while having fewer FLOPs than \chadded{\color{red}both} the 7x7 depthwise convolution \chadded{ \color{red} and the LS Conv} method. To verify whether the HH sub-band is beneficial to model performance, we conducted experiments by convolving all sub-bands and only convolving the LL, HL, and LH sub-bands. As shown in Table\ref{tab:HH_method}, the result indicates that neglecting to perform convolution on the HH sub-band leads to lower FLOPs without significant changes in top-1 accuracy, validating the effectiveness of the feature separation method proposed in LWSA.
 
 \begin{table}[pos=h]
 \centering
@@ -1195,7 +1273,7 @@ Taken together, these results show that the performance gains from learnable wav
 \toprule
 Strategy & FLOPs & Top-1 \\
 \midrule
-Identity & 313 & 75.2 \\
+Identity & 309 & 75.2 \\
 $7\times7$ DW & 318 & 79.1 \\
 LS Conv  & 321 & 80.4 \\
 \rowcolor[gray]{0.92}
@@ -1232,11 +1310,11 @@ Dataset & HH Strategy & FLOPs (M) & Result (\%) \\
 \midrule
 ImageNet-100
 & HH DWConv
-& 318
+& 316
 & $80.61 \pm 0.35$ \\
 
 & HH Identity
-& \textbf{316}
+& \textbf{313}
 & $\mathbf{80.63 \pm 0.29}$ \\
 
 \midrule
@@ -1258,7 +1336,7 @@ ClinicDB
 % In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To investigate whether additional feature extraction on the HH sub-band is necessary, we conduct ablation experiments on both ImageNet-100 and ClinicDB. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, applying DWConv to all sub-bands increases the FLOPs from 316M to 318M, while the Top-1 accuracy changes only slightly from $79.0 \pm 0.36$\% to $79.1 \pm 0.23$\%. Considering the need for careful validation of machine learning methods in healthcare applications~\cite{ganesan2024navigating}, we further examine this design on ClinicDB, where fine boundary delineation is particularly important. HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas additionally applying DWConv to the HH sub-band achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results indicate that additional processing of the HH sub-band provides no measurable performance improvement under either setting, while introducing additional computational cost. Therefore, preserving the HH sub-band for reconstruction without additional feature extraction provides a more favorable accuracy--efficiency trade-off.
 {\color{green}
 \textbf{Analysis of HH Sub-band Processing.}
-In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To isolate the effect of HH processing, we construct a controlled comparison in which LL, LH, and HL are processed identically in both configurations, while only the treatment of the HH sub-band is changed. Given the importance of rigorous empirical validation, particularly in healthcare-related machine-learning applications~\cite{ganesan2024navigating}, we evaluate this design on both ImageNet-100 and ClinicDB to examine its effectiveness in natural-image classification and medical-image segmentation. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, HH Identity reduces the FLOPs from 318M to 316M while achieving a comparable Top-1 accuracy of $80.63 \pm 0.29$%, compared with $80.61 \pm 0.35$% for HH DWConv. On ClinicDB, where fine boundary delineation is particularly important, HH Identity achieves a Test Dice of $94.21 \pm 0.67$% with 354M FLOPs, whereas HH DWConv achieves $94.19 \pm 0.41$% with 357M FLOPs. These results show that additional convolutional processing of the HH sub-band does not provide a meaningful performance improvement on either dataset while introducing additional computational cost. Therefore, preserving HH through an identity path for inverse wavelet reconstruction provides a more favorable accuracy--efficiency trade-off.
+In LWSA, the HH sub-band is preserved through an identity path and directly participates in the inverse wavelet transform, while additional convolutional processing is omitted to reduce computational overhead. To isolate the effect of HH processing, we construct a controlled comparison in which LL, LH, and HL are processed identically in both configurations, while only the treatment of the HH sub-band is changed. Given the importance of rigorous empirical validation, particularly in healthcare-related machine-learning applications~\cite{ganesan2024navigating}, we evaluate this design on both ImageNet-100 and ClinicDB to examine its effectiveness in natural-image classification and medical-image segmentation. As shown in Table~\ref{tab:HH_method}, on ImageNet-100, HH Identity reduces the FLOPs from 316M to 313M while achieving a comparable Top-1 accuracy of $80.63 \pm 0.29$\%, compared with $80.61 \pm 0.35$\% for HH DWConv. On ClinicDB, where fine boundary delineation is particularly important, HH Identity achieves a Test Dice of $94.21 \pm 0.67$\% with 354M FLOPs, whereas HH DWConv achieves $94.19 \pm 0.41$\% with 357M FLOPs. These results show that additional convolutional processing of the HH sub-band does not provide a meaningful performance improvement on either dataset while introducing additional computational cost. Therefore, preserving HH through an identity path for inverse wavelet reconstruction provides a more favorable accuracy--efficiency trade-off.
 }
 
 
@@ -1271,7 +1349,7 @@ In LWSA, the HH sub-band is preserved through an identity path and directly part
     \caption{All variants are based on WCANet-T4 and evaluated on ImageNet-100 with 100 training epochs.}
     \begin{tabular}{c|c|c}
     \toprule
-     Function &  \makecell{60 Epoch \\ Top1-Acc(\%)} & \makecell{100 Epoch \\ Top1-Acc(\%)}  \\
+    \makecell{Sub-band\\Combination} &  \makecell{60 Epoch \\ Top1-Acc. (\%)} & \makecell{100 Epoch \\ Top1-Acc. (\%)}  \\
      \midrule
         $HL$ & 73.01\% & 78.04\% \\
         $HH$ & 73.16\% & 77.92\% \\
@@ -1287,9 +1365,9 @@ In LWSA, the HH sub-band is preserved through an identity path and directly part
 
 
 
-\textbf{Analyze the effectiveness of different feature weight generation methods.} We evaluated the impact on model performance when feature weights are generated from one, two, or three subbands. 
-The experimental results are shown in Table~\ref{tab:placeholder}. It can be observed that feature weights derived from a single subband yield the lowest Top-1 accuracy, whereas those generated from two or three subbands achieve better performance.
-However, compared to other approaches, the $HL \odot LH$ variant demonstrates superior convergence over variants using three or other combinations of subbands. This strongly validates the effectiveness of the $HL \odot LH$ method.
+\textbf{Analyze the effectiveness of different feature weight generation methods.} We evaluated the impact on model performance when feature weights are generated from one, two, or three {\color{blue}sub-bands}. 
+The experimental results are shown in Table~\ref{tab:placeholder}. It can be observed that feature weights derived from a single sub-band yield the lowest Top-1 accuracy, whereas those generated from two or three {\color{blue}sub-bands} achieve better performance.
+However, compared to other approaches, the $HL \odot LH$ variant demonstrates superior convergence over variants using three or other combinations of {\color{blue}sub-bands}. These results support the effectiveness of the $HL \odot LH$ method.
 
 % 分析不同特征权重的有效性。我们试验了由单个、两个、或三个子带生成的特征权重对于模型的性能影响。实验结果如表\ref{tab:placeholder}所示，
 % 可以看出单个子带生成的特征权重的最终Top-1%最低，而由两子带或三个子带生成的特征权重表现出更好的性能。
@@ -1322,8 +1400,8 @@ CCSA (ESE + LWSA)   & \textbf{85.5} \\
 
 
 {\textbf{Ablation Study of CCSA Components.} 
-To isolate and quantify the individual contributions of the ESE module and the Learnable Wavelet Spatial Attention (LWSA), we conduct a component-wise ablation study on the CCSA block. As shown in Table~\ref{tab:component_ablation}, both components independently improve model performance. Compared to the baseline model (80.2\%), introducing only the ESE module or only the LWSA module yields significant improvements of +2.5\% and +3.1\%, respectively. The slightly better independent performance of LWSA (83.3\%) over ESE (82.7\%) indicates that our wavelet-based spatial attention plays a particularly crucial role in visual feature extraction. Furthermore, combining ESE and LWSA into the complete cascaded CCSA block achieves the highest Top-1 accuracy (85.5\%). This confirms that channel-wise and spatial-level feature enhancements are highly complementary, and the cascaded design is strictly necessary for comprehensive and effective feature extraction.
-}
+To isolate and quantify the individual contributions of the ESE module and the Learnable Wavelet Spatial Attention (LWSA), we conduct a component-wise ablation study on the CCSA block. As shown in Table~\ref{tab:component_ablation}, both components independently improve model performance. 
+Compared to the baseline model (80.2\%), introducing only the ESE module or only the LWSA module yields significant improvements of 2.5 and 3.1 percentage points, respectively. The slightly better independent performance of LWSA (83.3\%) over ESE (82.7\%) indicates the effectiveness of our wavelet-based spatial attention in visual feature extraction. Furthermore, combining ESE and LWSA into the complete cascaded CCSA block achieves the highest Top-1 accuracy (85.5\%). This confirms that channel-wise and spatial-level feature enhancements provide complementary contributions to the complete CCSA design.}
 
 
 
@@ -1430,7 +1508,7 @@ In this appendix, we provide more details on the experimental setup, architectur
 \subsection{ImageNet-1K experimental settings}
 
 
-% For the image classification task on ImageNet-1K, our training scheme is shown in Tab.\ref{tab:train_detail}. Since the maximum downsampling of WCANet is $\times128$, we use an image size of $256\times256$ for both training and testing. We found that T6 and T8 did not reach the highest accuracy at 300 rounds, so the training epochs for T6 and T8 are 400 epochs. We use the AdamW optimizer in combination with a cosine learning rate scheduler. The initial learning rate is set to $3\times10^{-3}$, and the total batch size is set to 1024. For data augmentation, we utilized methods such as Mixup, CutMix, and Random Erasing. We also use EMA to enhance the stability of training. {Furthermore, to ensure a smooth startup and prevent gradient instability during the early stages of training, we consistently employ a linear warmup strategy (e.g., 20 epochs for ImageNet-1K) before the cosine learning rate decay.}
+% For the image classification task on ImageNet-1K, our training scheme is shown in Table\ref{tab:train_detail}. Since the maximum downsampling of WCANet is $\times128$, we use an image size of $256\times256$ for both training and testing. We found that T6 and T8 did not reach the highest accuracy at 300 rounds, so the training epochs for T6 and T8 are 400 epochs. We use the AdamW optimizer in combination with a cosine learning rate scheduler. The initial learning rate is set to $3\times10^{-3}$, and the total batch size is set to 1024. For data augmentation, we utilized methods such as Mixup, CutMix, and Random Erasing. We also use EMA to enhance the stability of training. {Furthermore, to ensure a smooth startup and prevent gradient instability during the early stages of training, we consistently employ a linear warmup strategy (e.g., 20 epochs for ImageNet-1K) before the cosine learning rate decay.}
 
 
 For the ImageNet-1K classification experiments, the detailed training
@@ -1468,7 +1546,7 @@ employed during training.
 
 \begin{table}
 \centering
-\caption{Training Details on ImageNet}
+\caption{Training settings for WCANet on ImageNet-1K.}
 \label{tab:train_detail}
 \begin{tabular}{l|ccccc}
 \hline
@@ -1535,7 +1613,7 @@ by 128. Consequently, we adopt an input resolution of $256\times256$, avoiding
 additional padding and the associated computational and boundary effects.
 }
 
-Tab.\ref{tab:achitecture} presents the architectural details of the three-stage WCANet variants, and Tab.\ref{tab:achitecture_T8} shows the details of the four-stage WCANet variants.
+Table~\ref{tab:achitecture} presents the architectural details of the three-stage WCANet variants, and Table~\ref{tab:achitecture_T8} shows the details of the four-stage WCANet variants.
 
 \begin{table}
     \caption{Architectural details of WCANet-T1, WCANet-T3, and WCANet-T5.}
